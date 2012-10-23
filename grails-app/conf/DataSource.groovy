@@ -20,15 +20,8 @@ environments {
   }
   test {
     dataSource {
-      pooled = true
-      driverClassName = "com.mysql.jdbc.Driver"
-      dialect = org.hibernate.dialect.MySQL5InnoDBDialect
-      dbCreate = "create-drop"
-      loggingSql = false
-      
-      url = "jdbc:mysql://localhost/aaf_base_dev"
-      username = "aaf_base_dev"
-      password =  "password"
+      dbCreate = "update"
+      url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
     }
   }
 }

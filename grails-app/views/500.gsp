@@ -8,15 +8,12 @@
     <div class="row">
       <div class="span12">
         <div class="hero-unit">
-          <h1>500 - Internal Error</h1>
+          <h1><g:message code="branding.errors.500.heading"/></h1>
           <p>
-            Oops something has gone wrong technically. Sorry about that.
-          </p>
-          <p>
-            We've logged the incident so it can be reviewed and corrected by our technical team.
+            <g:message code="branding.errors.500.descriptive"/>
           </p>
         </div>
-        <p>If you continue to have problems or you'd like to let us know what you were doing before this happened please get in touch with <a href="http://support.aaf.edu.au">AAF support</a>.</p>
+        <p><g:message code="branding.application.supportdesk"/></p>
       </div>
     </div>
 

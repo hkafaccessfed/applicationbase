@@ -8,11 +8,12 @@
     <div class="row">
       <div class="span12">
         <div class="hero-unit">
-          <h1>403 - Forbidden</h1>
-          <p>You don't have the permission to retrieve or update the content identified in your last request.</p>
-          <p>This action has been halted and logged for review.</p>
+          <h1><g:message code="branding.errors.403.heading"/></h1>
+          <p>
+            <g:message code="branding.errors.403.descriptive"/>
+          </p>
         </div>
-        <p>If you continue to have problems or you'd like to let us know what you were doing before this happened please get in touch with <a href="http://support.aaf.edu.au">AAF support</a>.</p>
+        <p><g:message code="branding.application.supportdesk"/></p>
       </div>
     </div>
 

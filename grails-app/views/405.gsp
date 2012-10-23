@@ -8,11 +8,12 @@
     <div class="row">
       <div class="span12">
         <div class="hero-unit">
-          <h1>405 - Method not allowed</h1>
-          <p>Your browsers request was not in the correct underlying technical format.</p>
-          <p>This action has been halted and logged for review.</p>
+          <h1><g:message code="branding.errors.405.heading"/></h1>
+          <p>
+            <g:message code="branding.errors.405.descriptive"/>
+          </p>
         </div>
-        <p>If you continue to have problems or you'd like to let us know what you were doing before this happened please get in touch with <a href="http://support.aaf.edu.au">AAF support</a>.</p>
+        <p><g:message code="branding.application.supportdesk"/></p>
       </div>
     </div>
 

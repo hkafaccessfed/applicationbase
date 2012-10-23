@@ -6,7 +6,7 @@ grails.project.test.reports.dir = "target/test-reports"
 grails.project.target.level = 1.6
 grails.project.source.level = 1.6
 
-grails.plugin.location.'aaf-application-base' = '../aaf-application-base'
+grails.plugin.location.'aaf-application-base' = '../applicationbase'
 
 grails.project.dependency.resolution = {
   inherits("global") {

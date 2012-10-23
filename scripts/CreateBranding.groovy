@@ -23,7 +23,7 @@ target(main: "Populates initial branding for customisation") {
   FileUtils.copyFile(new File("${source}/src/branding/application_config.groovy.orig"), new File("${dest}/application_config.groovy"))
 
   // Default .gitignore
-  FileUtils.copyFile(new File("${source}/.gitignore"), new File("${dest}/.gitignore))
+  FileUtils.copyFile(new File("${source}/.gitignore"), new File("${dest}/.gitignore"))
 }
 
 setDefaultTarget(main)

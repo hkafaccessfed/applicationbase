@@ -12,11 +12,11 @@
   <body>
 
     <header>      
-      <g:render template='/templates/branding_header' />
+      <g:render template='/templates/branding/header' />
     </header>
 
     <nav>
-      <g:render template='/templates/branding_topnavigation'/>
+      <g:render template='/templates/branding/topnavigation'/>
     </nav>
 
     <section>
@@ -30,7 +30,7 @@
       <div class="container"> 
         <div class="row">
           <div class="span12">
-            <g:render template='/templates/branding_footer' />
+            <g:render template='/templates/branding/footer' />
           </div>
         </div>
       </div>

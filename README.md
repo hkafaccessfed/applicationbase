@@ -32,6 +32,36 @@ service simply provided for you.
 - Externalizes configuration and logging ready for production deployment
 - Supports Git Flow workflow and provides base .gitignore
 
+## Pre-requisites
+If you're new to this space you'll want to get a few things up and running before you can start development.
+
+1. A *nix based development machine - I work directly on my Mac but a [Virtualbox VM](http://www.virtualbox.org) works just as well
+
+2. An install of Java JDK. I am currently using a 7 release:
+	
+		java -version
+		java version "1.7.0_07"
+		Java(TM) SE Runtime Environment (build 1.7.0_07-b10)
+		Java HotSpot(TM) 64-Bit Server VM (build 23.3-b01, mixed mode)
+You can find [offical Oracle JDK downloads here](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or alternatively use an OpenJDK which works just as well.
+
+3. Ensure you have a JAVA_HOME and appropriate JAVA_OPTS environment variables defined in your `~/.bash_profile`, here is an example of mine:
+
+		export JAVA_HOME='/Library/Java/JavaVirtualMachines/jdk1.7.0_07.jdk/Contents/Home'
+		export JAVA_OPTS='-Xms1024m -Xmx1024m -XX:MaxPermSize=256m'
+For Grails work the above memory allocations seem to give me the best performance.
+
+4. [Install GVM](http://gvmtool.net/) using the below commands. You will require **bash, curl, zip and unzip** to be available on your system
+	
+		curl -s get.gvmtool.net | bash
+		source "~/.gvm/bin/gvm-init.sh"
+		gvm install grails 2.1.1
+		gvm use grails 2.1.1
+Make sure Grails is correctly installed and referenced:
+
+		$> which grails
+		~/.gvm/grails/current/bin/grails
+
 ## Getting things up and running
 This couldn't be simpler on the surface. Though getting things like workflows
 up and running will require a little more work and familiarisiation of the

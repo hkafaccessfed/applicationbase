@@ -1,3 +1,6 @@
+# Our application config
+application_config.groovy
+
 # web application files
 /web-app/WEB-INF
 

@@ -106,6 +106,11 @@ Setting the following:
     }
     *This will make dev easier, ensure FALSE in production*
 
+**You can and should extend the values stored in application_config.groovy** to suit your own applications needs.
+Be sure to also document new values in application_config.groovy.orig to assist deployers of your application.
+
+**application_config.groovy is excluded from git by default**
+
 11. Lets test everything. Export the environment variable config_dir:
 
     `export config_dir=.`

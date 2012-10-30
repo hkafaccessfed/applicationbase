@@ -45,6 +45,10 @@ class AAFBaseUrlMappings {
       controller="workflowScript"
     }
 
+    "/administration/emailtemplates/$action?/$id?"{
+      controller = "emailTemplate"
+    }
+
     "/administration/console"{
       controller = "adminConsole"
       action="index"

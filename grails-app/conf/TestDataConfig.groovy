@@ -1,6 +1,6 @@
 testDataConfig {
   sampleData {
-   'aaf.base.EmailView' {
+   'aaf.base.admin.EmailTemplate' {
       def i = 1
       name = {-> "name${i++}" }
     }

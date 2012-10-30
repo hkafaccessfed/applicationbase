@@ -1,9 +1,9 @@
-package aaf.base
+package aaf.base.admin
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString
 
-class EmailView {
+class EmailTemplate {
 
   String name
   String content
@@ -15,7 +15,7 @@ class EmailView {
     name nullable: false, blank: false, unique:true
     content type: 'text', validator: {val ->
       if (val == null || val == '')
-        return ['domains.aaf.base.emailview.content']
+        return ['domains.aaf.base.emailtemplate.content']
     }
   }
 

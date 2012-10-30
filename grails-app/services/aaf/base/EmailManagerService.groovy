@@ -1,11 +1,13 @@
 package aaf.base
 
+import aaf.base.admin.EmailTemplate
+
 class EmailManagerService {
   def mailService
   def groovyPagesTemplateEngine
   def groovyPageRenderer
 
-  public void send(String _to, String _subject, EmailView view, Map model, String _cc = null, String _bcc = null) {
+  public void send(String _to, String _subject, EmailTemplate view, Map model, String _cc = null, String _bcc = null) {
 
     def output = new StringWriter()
     groovyPagesTemplateEngine.createTemplate(view.content, view.name).make(model).writeTo(output)

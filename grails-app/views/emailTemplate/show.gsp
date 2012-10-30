@@ -9,14 +9,14 @@
     <ul class="breadcrumb">
       <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
       <li><g:link controller="adminDashboard"><g:message code="branding.nav.breadcrumb.admin"/></g:link> <span class="divider">/</span></li>
-      <li><g:link controller="workflowScript" action="list"><g:message code="branding.nav.breadcrumb.workflow.script"/></g:link> <span class="divider">/</span></li>
-      <li class="active">${fieldValue(bean: script, field: "name")}</li>
+      <li><g:link controller="emailTemplate" action="list"><g:message code="branding.nav.breadcrumb.admin.emailtemplate"/></g:link> <span class="divider">/</span></li>
+      <li class="active">${fieldValue(bean: emailtemplate, field: "name")}</li>
     </ul>
 
     <g:render template="/templates/flash" />
-    <g:render template="/templates/errors_bean" model="['bean':script]"/>
+    <g:render template="/templates/errors_bean" model="['bean':emailtemplate]"/>
 
-    <h2><g:message code="views.aaf.base.workflow.script.show.heading" args="[script.name]"/></h2>
+    <h2><g:message code="views.aaf.base.admin.emailtemplate.show.heading" args="[emailtemplate.name]"/></h2>
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message code="label.overview" /></a></li>
@@ -28,7 +28,7 @@
         </a>
         <ul class="dropdown-menu">
           <li>
-            <g:link controller="workflowScript" action="edit" id="${script.id}"><g:message code="label.edit"/></g:link>
+            <g:link controller="emailTemplate" action="edit" id="${emailtemplate.id}"><g:message code="label.edit"/></g:link>
           </li>
         </ul>
       </li>
@@ -42,25 +42,21 @@
               <tbody>   
                 <tr>
                   <th><g:message code="label.name" /></th>
-                  <td>${fieldValue(bean: script, field: "name")}</td>
-                </tr>
-                <tr>
-                  <th><g:message code="label.description" /></th>
-                  <td>${fieldValue(bean: script, field: "description")}</td>
+                  <td>${fieldValue(bean: emailtemplate, field: "name")}</td>
                 </tr>
                 <tr>
                   <th><g:message code="label.created" /></th>
-                  <td>${fieldValue(bean: script, field: "dateCreated")}</td>
+                  <td>${fieldValue(bean: emailtemplate, field: "dateCreated")}</td>
                 </tr>
                 <tr>
                   <th><g:message code="label.lastupdated" /></th>
-                  <td>${fieldValue(bean: script, field: "lastUpdated")}</td>
+                  <td>${fieldValue(bean: emailtemplate, field: "lastUpdated")}</td>
                 </tr>
               </tbody>
             </table>
           </div>
           <div class="span8">
-            <pre style="padding: 24px;">${fieldValue(bean: script, field: "definition")}</pre>
+            <pre style="padding: 24px;">${fieldValue(bean: emailtemplate, field: "content")}</pre>
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ import groovy.transform.ToString
 @ToString(includeNames=true, includeFields=true)
 @EqualsAndHashCode
 public class FederatedToken implements org.apache.shiro.authc.AuthenticationToken {
-  def principal, credential, attributes, remoteHost, userAgent
+  def principal, credential, sharedToken, attributes, remoteHost, userAgent
 
   public Object getCredentials() {
     return this.credential

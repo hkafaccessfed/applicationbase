@@ -26,13 +26,12 @@ class FederatedSessionsController {
     
     def principal = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.principal)
     def credential = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.credential)
+    def sharedToken = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.sharedToken)
     
     def attributes = [:]  
-    
     attributes.entityID = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.entityID)
     attributes.cn =  federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.cn)
     attributes.email = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.email)
-    attributes.sharedToken = federatedAttributeValue(grailsApplication, grailsApplication.config.aaf.base.realms.federated.mapping.sharedToken)
     
     if (!principal) {
       incomplete = true
@@ -42,6 +41,11 @@ class FederatedSessionsController {
     if (!credential) {
       incomplete = true
       errors.add "An internal SAML session identifier (Shib-Session-ID) was unable to be obtained from the provided assertion"
+    }
+
+    if (!sharedToken) {
+      incomplete = true
+      errors.add "An internal SAML session identifier (auEduPersonSharedToken) was unable to be obtained from the provided assertion"
     }
     
     if (!attributes.entityID) {
@@ -69,7 +73,7 @@ class FederatedSessionsController {
       if (ua.length() > 254) // Handle stupid user agents that present every detail known to man about corporate environments
         ua = ua.substring(0,254) 
       
-      def token = new FederatedToken(principal:principal, credential:credential, attributes:attributes, remoteHost:remoteHost, userAgent:ua ) 
+      def token = new FederatedToken(principal:principal, credential:credential, sharedToken:sharedToken, attributes:attributes, remoteHost:remoteHost, userAgent:ua ) 
       
       log.info "Attempting federation based authentication event for subject identified in $token"
       SecurityUtils.subject.login(token)

@@ -29,7 +29,6 @@ class EmailTemplateSpec extends UnitSpec {
     expectedResult << [false, false, true]
   }
 
-
   def 'ensure content must not be null or blank and contains HTML replacement banner'() {
     setup:
     def ev = new EmailTemplate(name:"test name")

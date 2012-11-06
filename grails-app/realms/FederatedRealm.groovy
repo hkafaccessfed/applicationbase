@@ -25,8 +25,15 @@ class FederatedRealm {
       log.error "Authentication attempt for federated provider, denying attempt as no credential was provided"
       throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no credential was provided")
     }
+    if (!token.sharedToken) {
+      log.error "Authentication attempt for federated provider, denying attempt as no shared token was provided"
+      throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no shared token was provided")
+    }
     Subject.withTransaction {
       Subject subject = Subject.findByPrincipal(token.principal)
+
+      if(!subject)  // Failover to lookup by SharedToken if available
+        subject = Subject.findBySharedToken(token.sharedToken)
 
       if (!subject) {
         if(!grailsApplication.config.aaf.base.realms.federated.auto_provision) {
@@ -41,14 +48,14 @@ class FederatedRealm {
         subject.principal = token.principal
         subject.enabled = true
         
-        subject.cn = token.attributes.cn
-        if(token.attributes.email.contains(';')) {
+        subject.cn = token.attributes?.cn
+        if(token.attributes?.email?.contains(';')) {
           log.warn "Email provided for ${token.principal} is multivalued (${token.attributes.email}) attempting to split on ; and use first returned value."
-          subject.email = token.attributes.email.toLowerCase().split(';')[0]
+          subject.email = token.attributes?.email?.toLowerCase().split(';')[0]
         } else {
-          subject.email = token.attributes.email.toLowerCase()
+          subject.email = token.attributes?.email?.toLowerCase()
         }
-        subject.sharedToken = token.attributes.sharedToken
+        subject.sharedToken = token.sharedToken
         
         // Store in data repository
         if(!subject.save()) {
@@ -64,7 +71,7 @@ class FederatedRealm {
         if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 1) {
           def permission = new Permission()
           permission.type = Permission.defaultPerm
-          permission.target = "app:administration"
+          permission.target = "*"
           permission.owner = subject
           
           permissionService.createPermission(permission, subject)
@@ -73,6 +80,7 @@ class FederatedRealm {
         }
 
       } else {
+        subject.principal = token.principal   // Ensure we catch EPTID change linked by the same SharedToken value
         subject.cn = token.attributes.cn
         
         if(token.attributes.email.contains(';')) {
@@ -82,9 +90,9 @@ class FederatedRealm {
           subject.email = token.attributes.email.toLowerCase()
         }
 
-        if (subject.sharedToken != token.attributes.sharedToken) {
-          log.error("Authentication halted for ${subject} as current sharedToken ${subject.sharedToken} does not match incoming token ${token.attributes.sharedToken}")
-          throw new IncorrectCredentialsException("${subject} authentication halted as current sharedToken ${subject.sharedToken} does not match incoming token ${token.attributes.sharedToken}")
+        if (subject.sharedToken != token.sharedToken) {
+          log.error("Authentication halted for ${subject} as current sharedToken ${subject.sharedToken} does not match incoming token ${token.sharedToken}")
+          throw new IncorrectCredentialsException("${subject} authentication halted as current sharedToken ${subject.sharedToken} does not match incoming token ${token.sharedToken}")
         }
 
         // Store in data repository

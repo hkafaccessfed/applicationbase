@@ -273,6 +273,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     request.addHeader('persistent-id', 'http://test.com!http://sp.test.com!1234')
     request.addHeader('Shib-Session-ID', '1234-mockid-5678')
     request.addHeader('Shib-Identity-Provider', 'https://entity.com/id')
+    request.addHeader('auEduPersonSharedToken', '12345678')
     request.addHeader('cn', 'Fred Bloggs')
     request.addHeader('mail', 'fred@uni.edu.au')
     request.addHeader("User-Agent", "Google Chrome X.Y")

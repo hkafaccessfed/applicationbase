@@ -27,6 +27,7 @@ class FederatedDevelopmentSessionsController {
     // Instead of SAML attributes we setup the session via form posted name/val
     def principal = params.principal
     def credential = params.credential  
+    def sharedToken = params.sharedToken
     def attributes = params.attributes
     
     if (!principal) {
@@ -37,6 +38,11 @@ class FederatedDevelopmentSessionsController {
     if (!credential) {
       incomplete = true
       errors.add "Internal SAML session identifier (credential) was not presented"
+    }
+
+    if (!sharedToken) {
+      incomplete = true
+      errors.add "Internal SAML session identifier (sharedToken) was not presented"
     }
     
     if(incomplete) {
@@ -51,7 +57,7 @@ class FederatedDevelopmentSessionsController {
       if (ua.length() > 254) // Handle stupid user agents that present every detail known to man about corporate environments
         ua = ua.substring(0,254) 
       
-      def token = new FederatedToken(principal:principal, credential:credential, attributes:attributes, remoteHost:remoteHost, userAgent:ua ) 
+      def token = new FederatedToken(principal:principal, credential:credential, sharedToken:sharedToken, attributes:attributes, remoteHost:remoteHost, userAgent:ua ) 
       
       log.info "Attempting development authentication event for subject identified in $token"
       SecurityUtils.subject.login(token)

@@ -30,7 +30,7 @@
               <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
               <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!https://manager.aaf.edu.au/shibboleth!8698dde3-d9cd-4c44-928c-2b6836bcc4bb" />
               <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="attributes.sharedToken" value="LGW3wpNaPgwnLoYYsghGbz1" />
+              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz1" />
               <g:hiddenField name="attributes.cn" value="Fred Bloggs" />
               <g:hiddenField name="attributes.email" value="fredbloggs@one.edu.au" />
               <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
@@ -44,7 +44,7 @@
               <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
               <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-2" />
               <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="attributes.sharedToken" value="LGW3wpNaPgwnLoYYsghGbz2" />
+              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz2" />
               <g:hiddenField name="attributes.cn" value="Joe Schmoe" />
               <g:hiddenField name="attributes.email" value="joeschmoe@one.edu.au" />
               <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
@@ -58,7 +58,7 @@
               <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
               <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-3" />
               <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="attributes.sharedToken" value="LGW3wpNaPgwnLoYYsghGbz3" />
+              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz3" />
               <g:hiddenField name="attributes.cn" value="Max Mustermann" />
               <g:hiddenField name="attributes.email" value="maxmustermann@one.edu.au" />
               <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
@@ -72,7 +72,7 @@
               <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
               <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-4" />
               <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="attributes.sharedToken" value="LGW3wpNaPgwnLoYYsghGbz4" />
+              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz4" />
               <g:hiddenField name="attributes.cn" value="Иван Петров" />
               <g:hiddenField name="attributes.email" value="i.petrov@one.edu.au" />
               <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />

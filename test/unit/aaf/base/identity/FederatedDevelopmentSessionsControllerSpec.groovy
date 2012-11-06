@@ -99,6 +99,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Google Chrome X.Y")
     
     def token
@@ -112,6 +113,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     1 * subject.login( { t -> token = t; t instanceof FederatedToken } )
     token.principal == 'http://test.com!http://sp.test.com!1234'
     token.credential == '1234-mockid-5678'
+    token.sharedToken == '12345678'
     token.userAgent == "Google Chrome X.Y"
     response.redirectedUrl == '/'
   }
@@ -132,6 +134,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Google Chrome X.Y")
     
     def token
@@ -147,6 +150,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     1 * subject.login( { t -> token = t; t instanceof FederatedToken } )
     token.principal == 'http://test.com!http://sp.test.com!1234'
     token.credential == '1234-mockid-5678'
+    token.sharedToken == '12345678'
     token.userAgent == "Google Chrome X.Y"
     response.redirectedUrl == '/some/test/content'
   }
@@ -172,6 +176,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Lorem ipsum dolor sit amet, nonummy ligula volutpat hac integer nonummy. Suspendisse ultricies, congue etiam tellus, erat libero, nulla eleifend, mauris pellentesque. Suspendisse integer praesent vel, integer gravida mauris, fringilla vehicula lacinia non")
     
     def token
@@ -185,6 +190,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     1 * subject.login( { t -> token = t; t instanceof FederatedToken } )
     token.principal == 'http://test.com!http://sp.test.com!1234'
     token.credential == '1234-mockid-5678'
+    token.sharedToken == '12345678'
     token.userAgent == "Lorem ipsum dolor sit amet, nonummy ligula volutpat hac integer nonummy. Suspendisse ultricies, congue etiam tellus, erat libero, nulla eleifend, mauris pellentesque. Suspendisse integer praesent vel, integer gravida mauris, fringilla vehicula lacinia no"
     response.redirectedUrl == '/'
   }
@@ -205,6 +211,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Google Chrome X.Y")
     
     def subject = Mock(org.apache.shiro.subject.Subject)
@@ -236,6 +243,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Google Chrome X.Y")
     
     def subject = Mock(org.apache.shiro.subject.Subject)
@@ -265,6 +273,7 @@ class FederatedDevelopmentSessionsControllerSpec extends spock.lang.Specificatio
     controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
     params.principal= 'http://test.com!http://sp.test.com!1234'
     params.credential= '1234-mockid-5678'
+    params.sharedToken = '12345678'
     request.addHeader("User-Agent", "Google Chrome X.Y")
     
     def subject = Mock(org.apache.shiro.subject.Subject)

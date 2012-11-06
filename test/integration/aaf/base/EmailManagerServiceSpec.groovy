@@ -1,7 +1,6 @@
 package aaf.base
 
 import grails.test.mixin.*
-import grails.buildtestdata.mixin.Build
 import spock.lang.*
 import grails.plugin.spock.*
 import com.icegreen.greenmail.util.*
@@ -12,10 +11,6 @@ class EmailManagerServiceSpec extends IntegrationSpec {
 
   def emailManagerService
   def greenMail
-
-  def setup() {
-
-  }
 
   def cleanup() {
     greenMail.deleteAllMessages()

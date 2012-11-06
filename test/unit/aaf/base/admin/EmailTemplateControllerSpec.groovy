@@ -5,8 +5,6 @@ import grails.buildtestdata.mixin.Build
 import spock.lang.*
 import grails.plugin.spock.*
 
-import test.shared.ShiroEnvironment
-
 @TestFor(aaf.base.admin.EmailTemplateController)
 @Build([EmailTemplate])
 class EmailTemplateControllerSpec extends spock.lang.Specification {

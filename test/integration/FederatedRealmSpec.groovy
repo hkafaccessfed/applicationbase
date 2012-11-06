@@ -1,7 +1,6 @@
 import grails.test.mixin.*
 import spock.lang.*
 import grails.plugin.spock.*
-import grails.buildtestdata.mixin.Build
 
 import org.apache.shiro.authc.*
 import aaf.base.identity.*
@@ -334,7 +333,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     aaf.base.identity.Subject.count() == 1
@@ -379,7 +378,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     aaf.base.identity.Subject.count() == 1
@@ -424,7 +423,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     aaf.base.identity.Subject.count() == 1
@@ -469,7 +468,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     def e = thrown(IncorrectCredentialsException)
@@ -509,7 +508,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     def e = thrown(RuntimeException)
@@ -547,7 +546,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     def e = thrown(DisabledAccountException)
@@ -589,7 +588,7 @@ class FederatedRealmSpec extends IntegrationSpec {
     aaf.base.identity.Subject.first().email == 'test@user.com'
 
     when:
-    def account = federatedRealm.authenticate(token)
+    federatedRealm.authenticate(token)
 
     then:
     def e = thrown(RuntimeException)

@@ -57,7 +57,7 @@ class RoleController {
 
       flash.type = 'success'
       flash.message = 'controllers.aaf.base.admin.role.update.success'
-      redirect(action: "show", id:  role.id)
+      redirect(action: "show", id:  updatedRole.id)
     } else {
       flash.type = 'error'
       flash.message = 'controllers.aaf.base.admin.role.update.failed'

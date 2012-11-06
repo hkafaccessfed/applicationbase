@@ -48,6 +48,7 @@ class AdminDashboardController {
   }
 
   def environment() {
+    log.info "requesting environment"
   }
 
 }

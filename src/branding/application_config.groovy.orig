@@ -1,56 +1,51 @@
 import org.apache.log4j.DailyRollingFileAppender
 
-appName=""
-grails.serverURL = ""
-grails.mail.default.from="noreply@aaf.edu.au"
-
+// DEVELOPMENT CONFIGURATION - DELETE BELOW BLOCK IF PRODUCTION
+greenmail.disabled = false
 grails {
-  resources.debug = true  
+  resources.debug = true
   gsp.enable.reload = true
+  logging.jul.usebridge = true
   mail {
     port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
   }
 }
+dataSource {
+  pooled = true
+  driverClassName = "org.h2.Driver"
+  username = "sa"
+  password = ""
+  dbCreate = "create-drop"
+  url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+}
+// END DEVELOPMENT CONFIGURATION - DELETE ABOVE BLOCK IF PRODUCTION
 
-// environment specific settings
-environments {
-  development {
-    grails.logging.jul.usebridge = true
-    greenmail.disabled = false
-    resources.debug = true  
-    gsp.enable.reload = true
-    mail {
-      port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
-    }
-  }
-  test {
-    testDataConfig.enabled = true
-    grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port  
-  }
-  production {
-    grails.logging.jul.usebridge = false
-    greenmail.disabled = true
-    resources.debug = false  
-    gsp.enable.reload = false
-    testDataConfig.enabled = false
-
-    grails {
-      // More advanced mail config available per: http://grails.org/plugin/mail
-      mail {
-        host = 'localhost'
-      }
-    }
-
-    // We only deploy into production using JNDI
-    // Ensure UTF8 and keep alive
-    dataSource {
-      dbCreate = "update"
-      dialect= org.hibernate.dialect.MySQL5InnoDBDialect
-      jndiName= "java:comp/env/jdbc/APPNAME" 
-    }
+// PRODUCTION CONFIGURATION - DELETE BELOW BLOCK IF DEVELOPMENT
+greenmail.disabled = true
+testDataConfig.enabled = false
+grails {
+  resources.debug = false  
+  gsp.enable.reload = false
+  logging.jul.usebridge = false
+  mail {
+    host = 'localhost' // More advanced mail config available per: http://grails.org/plugin/mail
   }
 }
+dataSource {
+  dbCreate = "update"
+  dialect= org.hibernate.dialect.MySQL5InnoDBDialect
+  jndiName= "java:comp/env/jdbc/APPNAME" 
+}
+// END PRODUCTION CONFIGURATION - DELETE ABOVE BLOCK IF DEVELOPMENT
 
+// COMMON CONFIGURATION
+appName=""
+grails {
+  serverURL = ""
+  mail {
+    default.from="noreply@aaf.edu.au"
+  }
+}
 
 aaf {
   base {

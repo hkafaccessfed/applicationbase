@@ -21,4 +21,8 @@ class SessionRecord {
     remoteHost(nullable: false, blank: false)
     userAgent(nullable: false, blank: false)
   }
+
+  static mapping = {
+    table 'base_sessionrecord'
+  }
 }

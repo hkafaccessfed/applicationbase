@@ -35,6 +35,10 @@ class Permission {
     role(nullable:true)
   }
 
+  static mapping = {
+    table 'base_permission'
+  }
+
   def setOwner (def owner) {
     if (owner instanceof Subject)
     this.subject = owner

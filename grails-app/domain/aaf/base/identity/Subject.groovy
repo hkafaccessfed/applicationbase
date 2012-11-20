@@ -29,4 +29,8 @@ class Subject {
     email email:true
     sharedToken nullable:false, blank:false
   }
+
+  static mapping = {
+    table 'base_subject'
+  }
 }

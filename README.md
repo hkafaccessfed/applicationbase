@@ -82,11 +82,11 @@ grails-app/conf/BuildConfig.groovy and add the following (~line 8):
 
 7. At the root of your project directory structure run the command:
 
-    `grails clean-new-app`
+    `grails base-clean-new-app`
 
 8. Follow this with the command:
 
-    `grails create-branding`
+    `grails base-create-branding`
 
 9. This has given you a number of new files througout your Grails App which
 you can explore. To start with lets get something basic up and running.
@@ -137,7 +137,7 @@ In particular the following files will help you customise your new application t
 ## Scaffolding
 The Application Base provides an extensive set of scaffolding templates to make creation of CRUD objects and views as fast as possible. Views fully utilise Bootstrap CSS and javascript libraries supported by AAF Application Base.
 
-To make use of this functionality first design your domain objects to store all data that is relevant to your application then use Grails scaffolding as normal. Support for all the grails generate-* commands (generate-controller, generate-views, generate-all) is provided see [Grails Scaffolding](http://grails.org/doc/latest/guide/scaffolding.html) for more details.
+To make use of this functionality first design your domain objects to store all data that is relevant to your application then use Grails scaffolding as normal. Support for all the grails generate-* commands are provided as base-generate-* overrides (base-generate-controller, base-generate-views, base-generate-all) is provided see [Grails Scaffolding](http://grails.org/doc/latest/guide/scaffolding.html) for more details.
 
 When creating a controller a full test suite is also generated in test/unit/<Name>ControllerSpec.groovy.
 
@@ -145,7 +145,7 @@ While scaffolding is very useful for developers it onlg gives you around **80%**
 
 You will need to create your own **i18n codes** and provide your own **URL Mappings** for generated controllers and views.
 
-Scaffolding is provided by the `grails create-app` command by default. If you're already using AAF Application Base 0.1 then a new command `grails create-templates` will populate the scaffolding components for you.
+Scaffolding is provided by the `grails base-create-app` command by default. If you're already using AAF Application Base 0.1 then a new command `grails base-create-templates` will populate the scaffolding components for you.
 
 ## Access Control
 Within the Application Base a **Subject** is the key building block. Subjects are created (usually automatically) when a new users enters the system via supported authentication realm (federation for production, local accounts for development. See FederatedRealm.groovy)

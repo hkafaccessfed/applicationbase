@@ -23,7 +23,7 @@
  */
 
 includeTargets << grailsScript("_GrailsCreateArtifacts")
-includeTargets << grailsScript("_GrailsGenerate")
+includeTargets << new File("scripts/_GrailsGenerate")
 
 target ('default': "Generates the CRUD views for a specified domain class") {
     depends(checkVersion, parseArguments, packageApp)

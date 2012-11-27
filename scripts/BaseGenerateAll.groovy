@@ -23,7 +23,7 @@
  */
 
 includeTargets << grailsScript("_GrailsCreateArtifacts")
-includeTargets << grailsScript("_GrailsGenerate")
+includeTargets << new File("scripts/_GrailsGenerate")
 
 generateViews = true
 generateController = true

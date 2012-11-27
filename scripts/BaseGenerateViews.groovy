@@ -23,17 +23,17 @@
  */
 
 includeTargets << grailsScript("_GrailsCreateArtifacts")
-includeTargets << new File("scripts/_GrailsGenerate")
+includeTargets << new File("scripts/_GrailsGenerate.groovy")
 
 target ('default': "Generates the CRUD views for a specified domain class") {
-    depends(checkVersion, parseArguments, packageApp)
-    promptForName(type: "Domain Class")
-    generateController = false
-    def name = argsMap['params'][0]
-    if(!name || name == '*') {
-        uberGenerate()
-    } else {
-        generateForName = name
-        generateForOne()
-    }
+  depends(checkVersion, parseArguments, packageApp)
+  promptForName(type: "Domain Class")
+  generateController = false
+  def name = argsMap['params'][0]
+  if(!name || name == '*') {
+    uberGenerate()
+  } else {
+    generateForName = name
+    generateForOne()
+  }
 }

@@ -23,7 +23,7 @@
  */
 
 includeTargets << grailsScript("_GrailsCreateArtifacts")
-includeTargets << new File("scripts/_GrailsGenerate.groovy")
+includeTargets << new File(aafApplicationBasePluginDir, "scripts/_BaseGrailsGenerate.groovy")
 
 generateViews = true
 generateController = true

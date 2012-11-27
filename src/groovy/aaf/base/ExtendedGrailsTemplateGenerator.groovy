@@ -26,7 +26,6 @@ class ExtendedGrailsTemplateGenerator extends DefaultGrailsTemplateGenerator {
         t.make(binding).writeTo(it)
       }
     }
-    
   }
 
   protected canWrite(File testFile) {

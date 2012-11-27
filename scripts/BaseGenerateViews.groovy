@@ -23,7 +23,7 @@
  */
 
 includeTargets << grailsScript("_GrailsCreateArtifacts")
-includeTargets << new File("scripts/_GrailsGenerate.groovy")
+includeTargets << new File(aafApplicationBasePluginDir, "scripts/_BaseGrailsGenerate.groovy")
 
 target ('default': "Generates the CRUD views for a specified domain class") {
   depends(checkVersion, parseArguments, packageApp)

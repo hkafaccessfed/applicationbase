@@ -33,7 +33,7 @@ generateForName = null
 generateViews = true
 generateController = true
 
-warning = "\n\n**** This code is not production ready. Please verify all tests, restrict data binding and perform other quality checks before commiting to your project. In some cases such as the use of a require Date field (and other edge cases) the autmatically generated testcases will require manual adjustment to pass successfully. ****\n"
+warning = "\n\n**** This code is not production ready. Please verify all tests, restrict data binding and perform other quality checks before commiting to your project. In some cases such as the use of a required Date field (and other edge cases) the automatically generated test cases will require manual adjustment to pass successfully. ****\n"
 
 target(generateForOne: "Generates controllers and views for only one domain class.") {
     depends(loadApp)

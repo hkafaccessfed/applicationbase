@@ -147,6 +147,17 @@ You will need to create your own **i18n codes** and provide your own **URL Mappi
 
 Scaffolding is provided by the `grails base-create-app` command by default. If you're already using AAF Application Base 0.1 then a new command `grails base-create-templates` will populate the scaffolding components for you.
 
+Be sure to commit your scaffold output once you're happy with it so you don't accidently overwrite it if the commands get executed again.
+
+### Fine tuning scaffolding output
+In certain cases the scaffolding generated for your object's controller will need manual fine tuning before you can get test cases to pass. Situations where we've seen this occur:
+
+* Use of a mandatory Date field in your domain object. This will require you to provide a date format in your test case that your controller is expecting to recieve to create the Date field from.
+* A set/list of domain object references that much have at least one entry. You'll need to manually provide this data, possibly requiring additional [Build annotations](https://bitbucket.org/tednaleid/grails-test-data/wiki/UnitTestSupport) in your test code.
+* Problems with fields that must be unique. In this case you'll need to fine tune how the build process works [via the build-test-data plugin TestDataConfig configuration.](https://bitbucket.org/tednaleid/grails-test-data/wiki/TestDataConfig)
+* **Your edge case here please!**
+
+
 ## Access Control
 Within the Application Base a **Subject** is the key building block. Subjects are created (usually automatically) when a new users enters the system via supported authentication realm (federation for production, local accounts for development. See FederatedRealm.groovy)
 

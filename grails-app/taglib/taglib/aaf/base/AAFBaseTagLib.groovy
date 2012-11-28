@@ -38,8 +38,9 @@ class AAFBaseTagLib {
   def hasAnyPermission = {attrs, body ->
     def inList = attrs.in
 
-    if(inList.any { checkPermission(it) } ) {
-      out << body()
+    if(inList) {
+      if(inList.any { checkPermission(it) } )
+        out << body()
     } else {
       throwTagError('Tag [hasAnyPermission] must have [in] attribute.')
     }

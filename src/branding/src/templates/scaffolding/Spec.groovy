@@ -265,7 +265,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
     
     ${propertyName}TestInstance.properties.each {
       if(it.value) {
-        if(it.value.hasProperty('id'))
+        if(grailsApplication.isDomainClass(it.value.getClass()))
           params."\${it.key}" = [id:"\${it.value.id}"]
         else
           params."\${it.key}" = "\${it.value}"
@@ -298,7 +298,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
     
     ${propertyName}TestInstance.properties.each {
       if(it.value) {
-        if(it.value.hasProperty('id'))
+        if(grailsApplication.isDomainClass(it.value.getClass()))
           params."\${it.key}" = [id:"\${it.value.id}"]
         else
           params."\${it.key}" = "\${it.value}"

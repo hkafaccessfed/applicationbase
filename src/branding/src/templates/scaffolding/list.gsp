@@ -9,7 +9,9 @@
       <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
       <li class="active"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></li>
       
-      <li class="pull-right"><strong><g:link action="create"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}.create"/></g:link></strong></li>
+      <aaf:hasPermission target="app:manage:${domainClass.propertyName.toLowerCase()}:create">
+        <li class="pull-right"><strong><g:link action="create"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}.create"/></g:link></strong></li>
+      </aaf:hasPermission>
     </ul>
 
     <g:render template="/templates/flash" plugin="aafApplicationBase"/>

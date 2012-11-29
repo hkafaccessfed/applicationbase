@@ -9,7 +9,7 @@
     <ul class="breadcrumb">
       <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
       <li><g:link action="list"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></g:link> <span class="divider">/</span></li>
-      <li><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}.show"/></li>
+      <li><g:fieldValue bean="\${${propertyName}}" field="id"/></li>
     </ul>
 
     <g:render template="/templates/flash" plugin="aafApplicationBase"/>
@@ -19,21 +19,31 @@
 
     <ul class="nav nav-tabs">
       <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message code="label.overview" /></a></li>
+
+      <aaf:hasAnyPermission in='["app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:edit","app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:delete"]'>
       <li class="dropdown pull-right">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
           <g:message code="label.actions" />
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li>
-            <g:link action="edit" id="\${${propertyName}.id}"><g:message code="label.edit"/></g:link>
-            <a href="#" class="delete-ensure" data-confirm="\${message(code:'views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.confirm.remove')}"><g:message code="label.delete"/></a>
-            <g:form action="delete" method="delete">
-              <g:hiddenField name="id" value="\${${propertyName}.id}" />
-            </g:form>
-          </li>
+          <aaf:hasPermission target="app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:edit">
+            <li>
+              <g:link action="edit" id="\${${propertyName}.id}"><g:message code="label.edit"/></g:link>
+            </li>
+          </aaf:hasPermission>
+
+          <aaf:hasPermission target="app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:delete">
+            <li>
+              <a href="#" class="delete-ensure" data-confirm="\${message(code:'views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.confirm.remove')}"><g:message code="label.delete"/></a>
+              <g:form action="delete" method="delete">
+                <g:hiddenField name="id" value="\${${propertyName}.id}" />
+              </g:form>
+            </li>
+          </aaf:hasPermission>
         </ul>
       </li>
+      </aaf:hasAnyPermission>
     </ul>
 
     <div class="tab-content">

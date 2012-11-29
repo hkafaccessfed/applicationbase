@@ -37,7 +37,9 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
   <div class="control-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')}">
     <label class="control-label" for="${prefix}${p.name}"><g:message code="label.${p.name.toLowerCase()}"/></label>
     <div class="controls">
-      ${renderEditor(p)}    </div>
+      ${renderEditor(p)}
+      <a href="#" rel="tooltip" title="\${g.message(code:'help.inline.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.${p.name.toLowerCase()}')}"><i class="icon icon-question-sign"></i></a>
+    </div>
   </div>
 <%  }   } %>
 </fieldset>

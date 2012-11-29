@@ -68,6 +68,13 @@ modules = {
     // Source: http://codemirror.net
     resource url: [plugin: 'aafApplicationBase', dir:'/js/codemirror', file:'codemirror.min.js'], disposition:'head', nominify: true
   }
+  'equalizecols' {
+    // Source: http://tomdeater.com/jquery/equalize_columns/
+    defaultBundle 'app_base'
+
+    dependsOn 'jquery'
+    resource url: [plugin: 'aafApplicationBase', dir:'js/jquery', file:'jquery.equalizecols.min.js'], attrs:[type:'js'] 
+  }
   'app_base' {
     defaultBundle 'app_base'
 

@@ -103,7 +103,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
 
   def 'ensure correct output from create when valid permission'() {
     setup:
-    shiroSubject.isPermitted("app:manage:${propertyName}:create") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:create") >> true
 
     when:
     def model = controller.create()
@@ -114,7 +114,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
 
   def 'ensure correct output from create when invalid permission'() {
     setup:
-    shiroSubject.isPermitted("app:manage:${propertyName}:create") >> false
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:create") >> false
 
     when:
     def model = controller.create()
@@ -126,7 +126,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
 
   def 'ensure correct output from save when invalid permission'() {
     setup:
-    shiroSubject.isPermitted("app:manage:${propertyName}:create") >> false
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:create") >> false
 
     when:
     def model = controller.save()
@@ -138,7 +138,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
 
   def 'ensure correct output from save with invalid data and when valid permission'() {
     setup:
-    shiroSubject.isPermitted("app:manage:${propertyName}:create") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:create") >> true
 
     def ${propertyName}TestInstance = ${className}.build()
     ${propertyName}TestInstance.properties.each {
@@ -168,7 +168,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
 
   def 'ensure correct output from save with valid data and when valid permission'() {
     setup:
-    shiroSubject.isPermitted("app:manage:${propertyName}:create") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:create") >> true
 
     def ${propertyName}TestInstance = ${className}.build()
     ${propertyName}TestInstance.properties.each {
@@ -201,7 +201,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from edit when invalid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:edit") >> false
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:edit") >> false
 
     when:
     params.id = ${propertyName}TestInstance.id
@@ -215,7 +215,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from edit when valid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:edit") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:edit") >> true
 
     when:
     params.id = ${propertyName}TestInstance.id
@@ -228,7 +228,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from update when invalid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance}.id}:edit") >> false
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance}.id}:edit") >> false
 
     when:
     def model = controller.update()
@@ -241,7 +241,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from update with null version but valid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:edit") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:edit") >> true
     
     expect:
     ${className}.count() == 1
@@ -260,7 +260,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from update with invalid data and when valid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:edit") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:edit") >> true
     ${propertyName}TestInstance.getVersion() >> 20
     
     ${propertyName}TestInstance.properties.each {
@@ -294,7 +294,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from update with valid data and when valid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:edit") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:edit") >> true
     
     ${propertyName}TestInstance.properties.each {
       if(it.value) {
@@ -329,7 +329,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from delete when invalid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:delete") >> false
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:delete") >> false
 
     when:
     params.id = ${propertyName}TestInstance.id
@@ -343,7 +343,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from delete when valid permission'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:delete") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:delete") >> true
 
     expect:
     ${className}.count() == 1
@@ -364,7 +364,7 @@ class ${className}ControllerSpec  extends spock.lang.Specification {
   def 'ensure correct output from delete when integrity violation'() {
     setup:
     def ${propertyName}TestInstance = ${className}.build()
-    shiroSubject.isPermitted("app:manage:${propertyName}:\${${propertyName}TestInstance.id}:delete") >> true
+    shiroSubject.isPermitted("app:manage:${propertyName.toLowerCase()}:\${${propertyName}TestInstance.id}:delete") >> true
 
     ${className}.metaClass.delete { throw new org.springframework.dao.DataIntegrityViolationException("Thrown from test case") }
 

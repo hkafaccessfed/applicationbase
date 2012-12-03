@@ -40,7 +40,7 @@ class ${className}Controller {
         return
       }
 
-      log.info "Action: save, Subject: \$subject, Object: ${propertyName}"
+      log.info "Action: save, Subject: \$subject, Object: \${${propertyName}}"
       flash.type = 'success'
       flash.message = 'controllers.${packageName.toLowerCase()}.${className.toLowerCase()}.save.success'
       redirect(action: "show", id: ${propertyName}.id)
@@ -89,7 +89,7 @@ class ${className}Controller {
         return
       }
 
-      log.info "Action: update, Subject: \$subject, Object: ${propertyName}"
+      log.info "Action: update, Subject: \$subject, Object: \${${propertyName}}"
       flash.type = 'success'
       flash.message = 'controllers.${packageName.toLowerCase()}.${className.toLowerCase()}.update.success'
       redirect(action: "show", id: ${propertyName}.id)

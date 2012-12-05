@@ -13,9 +13,13 @@ class EmailTemplate {
   Date dateCreated
   Date lastUpdated
 
+  static mapping = {
+    content type: 'text'
+  }
+
   static constraints = {
     name nullable: false, blank: false, unique:true
-    content type: 'text', validator: {val ->
+    content validator: {val ->
       if (val == null || val == '')
         return ['domains.aaf.base.emailtemplate.content']
     }

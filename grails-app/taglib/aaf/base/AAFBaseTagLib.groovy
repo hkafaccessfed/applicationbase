@@ -57,6 +57,18 @@ class AAFBaseTagLib {
     }
   }
 
+  // This tag only writes its body to the output if the current user has none of the given permissions.
+  def lacksAllPermissions = {attrs, body ->
+    def inList = attrs.in
+
+    if(inList) {
+      if(!inList.any { checkPermission(it) } )
+        out << body()
+    } else {
+      throwTagError('Tag [hasAnyPermission] must have [in] attribute.')
+    }
+  }
+
   // This tag only writes its body to the output if the current subject is logged in.
   def isLoggedIn = {attrs, body ->
     if (checkAuthenticated()) {

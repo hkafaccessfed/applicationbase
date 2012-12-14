@@ -26,7 +26,7 @@ class EmailManagerService {
         bcc _bcc
 
       subject _subject
-      body(email_msg)
+      html email_msg
     }
   }
 

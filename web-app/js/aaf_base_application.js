@@ -162,9 +162,9 @@ aaf_base.administration_dashboard_sessions_report = function(sessions) {
     xAxis: {
       type: 'datetime',
       dateTimeLabelFormats: { // don't display the dummy year
-                month: '%b  \'%y',
-                year: '%b'
-            }
+        month: '%b  \'%y',
+        year: '%b'
+      }
     },
     yAxis: {
       title: {

@@ -16,7 +16,7 @@ class AuthController {
 
     // Integrates with Shibboleth NativeSPSessionCreationParameters as per https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPSessionCreationParameters
     // This allows us to mix and match publicly available and private content within by making use of security filters in conf/SecurityFilters.groovy
-    def localAction = createLink([action: 'federatedlogin', absolute: true])
+    def localAction = createLink([controller:'federatedSessions', action: 'federatedlogin', absolute: true])
     def url = "${grailsApplication.config.aaf.base.realms.federated.sso_endpoint}?target=${localAction}"
 
     // If this a production scenario we defer to shibboleth

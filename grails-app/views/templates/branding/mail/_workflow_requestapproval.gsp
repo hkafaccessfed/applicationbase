@@ -2,7 +2,7 @@
 
   <!-- THIS IS USED FOR TEST PURPOSES ONLY AND OVERRIDEN VIA BRANDING IN HOST APPLICATION -->
 
-  An important task <strong>requiring your approval</strong> is waiting for your input within <g:link controller="workflowApproval" action="list" absolute="true">INTEGRATION TEST workflows</g:link>.
+  An important task <strong>requiring your approval</strong> is waiting for your input within <g:link controller="workflowApproval" action="list">INTEGRATION TEST workflows</g:link>.
   <br><br>
 
   <h4 class="h4">Task Details</h4>
@@ -34,4 +34,4 @@
   </table>
 
   <br><br>
-  Please <g:link controller="workflowApproval" action="list" absolute="true"><strong>action approvals</strong></g:link> waiting on your input at your earliest convenience.
+  Please <g:link controller="workflowApproval" action="list"><strong>action approvals</strong></g:link> waiting on your input at your earliest convenience.

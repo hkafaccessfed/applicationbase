@@ -45,3 +45,5 @@ application_config.groovy
 cobertura.ser
 .DS_Store
 
+
+plugin.xml

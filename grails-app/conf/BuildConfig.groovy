@@ -3,8 +3,12 @@ grails.servlet.version = "3.0"
 grails.project.class.dir = "target/classes"
 grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
-grails.project.target.level = 1.6
-grails.project.source.level = 1.6
+grails.project.target.level = 1.7
+grails.project.source.level = 1.7
+
+grails.project.fork = [
+   run: [maxMemory:1024, minMemory:64, debug:false, maxPerm:256]
+]
 
 grails.project.dependency.resolution = {
   inherits("global") {
@@ -31,6 +35,7 @@ grails.project.dependency.resolution = {
 
   dependencies {
     test 'mysql:mysql-connector-java:5.1.18'
+    test 'org.spockframework:spock-grails-support:0.7-groovy-2.0'
   }
 
   /*
@@ -65,7 +70,9 @@ grails.project.dependency.resolution = {
     runtime ":cache-headers:1.1.5"
     runtime ":audit-logging:0.5.4"
 
-    test    ":spock:0.6"
+    test(":spock:0.7") {
+      exclude "spock-grails-support"
+    }
     test    ":code-coverage:1.2.5"
   }
 }

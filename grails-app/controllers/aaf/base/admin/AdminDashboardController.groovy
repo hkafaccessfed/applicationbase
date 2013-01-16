@@ -1,6 +1,6 @@
 package aaf.base.admin
 
-import org.codehaus.groovy.runtime.TimeCategory
+import groovy.time.TimeCategory
 
 import aaf.base.identity.*
 

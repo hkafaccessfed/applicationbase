@@ -4,9 +4,9 @@ import aaf.base.identity.Subject
 
 class AafApplicationBaseGrailsPlugin {
 
-  def version = "0.4.1"
+  def version = "0.5"
 
-  def grailsVersion = "2.1 > *"
+  def grailsVersion = "2.2 > *"
 
   def dependsOn = [:]
 

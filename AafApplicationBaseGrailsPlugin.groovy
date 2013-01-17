@@ -4,7 +4,7 @@ import aaf.base.identity.Subject
 
 class AafApplicationBaseGrailsPlugin {
 
-  def version = "0.5"
+  def version = "0.5.1"
 
   def grailsVersion = "2.2 > *"
 

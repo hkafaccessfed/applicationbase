@@ -23,6 +23,13 @@ modules = {
     resource url: [plugin: 'aafApplicationBase', dir:'js/bootstrap', file:'bootstrap-notify-1.0.min.js'], attrs:[type:'js']
     resource url: [plugin: 'aafApplicationBase', dir:'css/bootstrap-notify-1.0.css'], attrs:[type:'css']
   }
+  'bootstrap-multiselect' {
+    // Source: https://github.com/davidstutz/bootstrap-multiselect
+    defaultBundle 'app_base'
+
+    dependsOn 'bootstrap'
+    resource url: [plugin: 'aafApplicationBase', dir:'js/bootstrap', file:'bootstrap-multiselect.min.js'], attrs:[type:'js']
+  }
   'bootbox' {
     // Source: http://bootboxjs.com/
     defaultBundle 'app_base'

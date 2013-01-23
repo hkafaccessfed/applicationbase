@@ -40,6 +40,9 @@ aaf_base.applyBehaviourTo = function(scope) {
     ignore: ":disabled",
     keyup: false,
     errorClass: "text-error",
+    errorPlacement: function(error, element) {
+     error.appendTo( element.parent());
+    },
     highlight: function(label) {
       $(label).closest('.control-group').addClass('error');
     },

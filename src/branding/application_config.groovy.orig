@@ -74,7 +74,13 @@ aaf {
         // Supported as fallback for problematic webservers
         // AAF webserver configuration shouldn't require this to be false.
         // See https://wiki.shibboleth.net/confluence/display/SHIB2/NativeSPAttributeAccess for more
-        request.attributes = true 
+        request.attributes = true
+
+        require {
+          sharedtoken = true
+          cn = true
+          email = true
+        }
         
         
         mapping {

@@ -25,9 +25,23 @@ class FederatedRealm {
       log.error "Authentication attempt for federated provider, denying attempt as no credential was provided"
       throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no credential was provided")
     }
-    if (!token.sharedToken) {
-      log.error "Authentication attempt for federated provider, denying attempt as no shared token was provided"
-      throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no shared token was provided")
+    if (grailsApplication.config.aaf.base.realms.federated.require.sharedtoken) {
+      if (!token.sharedToken) {
+        log.error "Authentication attempt for federated provider, denying attempt as no shared token was provided"
+        throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no shared token was provided")
+      }
+    }
+    if (grailsApplication.config.aaf.base.realms.federated.require.cn) {
+      if (!token.attributes?.cn) {
+        log.error "Authentication attempt for federated provider, denying attempt as no cn was provided"
+        throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no cn was provided")
+      }
+    }
+    if (grailsApplication.config.aaf.base.realms.federated.require.email) {
+      if (!token.attributes?.email) {
+        log.error "Authentication attempt for federated provider, denying attempt as no email was provided"
+        throw new UnknownAccountException("Authentication attempt for federated provider, denying attempt as no email was provided")
+      }
     }
     Subject.withTransaction {
       Subject subject = Subject.findByPrincipal(token.principal)
@@ -68,7 +82,7 @@ class FederatedRealm {
         log.info("Created ${subject} from federated attribute statement")
 
         // If no other subjects exist our first user gets admin rights
-        if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 1) {
+        if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 0) {
           def permission = new Permission()
           permission.type = Permission.defaultPerm
           permission.target = "*"

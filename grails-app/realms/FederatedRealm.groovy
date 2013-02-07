@@ -10,6 +10,7 @@ class FederatedRealm {
   static authTokenClass = aaf.base.identity.FederatedToken
   
   def grailsApplication
+  def roleService
   def permissionService
   
   def authenticate(token) {
@@ -82,15 +83,18 @@ class FederatedRealm {
         log.info("Created ${subject} from federated attribute statement")
 
         // If no other subjects exist our first user gets admin rights
-        if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 0) {
+        if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 1) {
+          def adminRole = roleService.createRole('super administrators', 'Administrators who have access to all parts of the application', true)
+          roleService.addMember(subject, adminRole)
+
           def permission = new Permission()
           permission.type = Permission.defaultPerm
           permission.target = "*"
           permission.owner = subject
           
-          permissionService.createPermission(permission, subject)
+          permissionService.createPermission(permission, adminRole)
 
-          log.warn("Granted ${subject} application wide administative access as this is the first subject to be created") 
+          log.warn("Created ${adminRole} for application wide administative access and installed ${subject} as a member") 
         }
 
       } else {

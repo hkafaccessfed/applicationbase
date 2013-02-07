@@ -23,6 +23,8 @@ class AafApplicationBaseGrailsPlugin {
 
   def documentation = "http://www.aaf.edu.au"
 
+  def watchedResources = ["file:./grails-app/**/services/*Service.groovy", "file:./grails-app/controllers/**/*Controller.groovy"]
+
   def doWithWebDescriptor = { xml ->
   }
 

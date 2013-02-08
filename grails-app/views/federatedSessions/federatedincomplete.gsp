@@ -9,7 +9,7 @@
     <div class="alert alert-block alert-error">
       <p><g:message code="views.aaf.base.identity.federatedsessions.federatedincomplete.details"/></p>
     
-      <g:if test="${errors && errors.errorCount > 0}">
+      <g:if test="${errors?.size() > 0}">
         <ul>
           <g:each in="${errors}" var="msg">
             <li><g:message code="${msg}" /></li>

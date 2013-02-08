@@ -42,23 +42,30 @@ class FederatedSessionsController {
       incomplete = true
       errors.add "An internal SAML session identifier (Shib-Session-ID) was unable to be obtained from the provided assertion"
     }
-
-    if (!sharedToken) {
-      incomplete = true
-      errors.add "An internal SAML session identifier (auEduPersonSharedToken) was unable to be obtained from the provided assertion"
-    }
-    
     if (!attributes.entityID) {
       incomplete = true
       errors.add "An EntityID was unable to be obtained from the provided assertion"
     }
-    if (!attributes.cn) {
-      incomplete = true
-      errors.add "Your common name (cn, urn:oid:2.5.4.3) was unable to be obtained from the provided assertion"
+
+    if (grailsApplication.config.aaf.base.realms.federated.require.sharedtoken) {
+      if (!sharedToken) {
+        incomplete = true
+        errors.add "Your identifier (auEduPersonSharedToken) was unable to be obtained from the provided assertion"
+      }
     }
-    if (!attributes.email) {
-      incomplete = true
-      errors.add "Your email address (mail, urn:oid:0.9.2342.19200300.100.1.3) was unable to be obtained from the provided assertion"
+
+    if (grailsApplication.config.aaf.base.realms.federated.require.cn) {
+      if (!attributes.cn) {
+        incomplete = true
+        errors.add "Your common name (cn, urn:oid:2.5.4.3) was unable to be obtained from the provided assertion"
+      }
+    }
+
+    if (grailsApplication.config.aaf.base.realms.federated.require.email) {
+      if (!attributes.email) {
+        incomplete = true
+        errors.add "Your email address (mail, urn:oid:0.9.2342.19200300.100.1.3) was unable to be obtained from the provided assertion"
+      }
     }
     
     if(incomplete) {

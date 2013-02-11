@@ -75,7 +75,7 @@ class WorkflowProcessServiceSpec extends IntegrationSpec {
     minimalDefinition = new File('test/data/minimal.pr').getText()
     workflowProcessService.create(minimalDefinition)
     def process = Process.findByName('Minimal Test Process')
-    def agent = Subject.build()
+    def agent = Subject.build(cn: 'Agent CN', email:'user@test.com')
 
     expect:
     !testScript.hasErrors()

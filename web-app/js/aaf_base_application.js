@@ -38,13 +38,16 @@ aaf_base.applyBehaviourTo = function(scope) {
 
   $('.form-validating', scope).validate({
     ignore: ":disabled",
-    keyup: false,
-    errorClass: "text-error",
-    highlight: function(label) {
-      $(label).closest('.control-group').addClass('error');
-    },
-    success: function(label) {
-      label.closest('.control-group').addClass('success');
+    keyup: true,
+    focusout: false,
+    focusInvalid:true,
+    errorElement: "div",
+    wrapper: "div",
+    errorPlacement: function(error, element) {
+      error.css('margin-bottom', '12px');
+
+      error.addClass('text-error');
+      element.parent().append(error);
     }
   });
 

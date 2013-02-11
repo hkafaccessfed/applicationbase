@@ -4,7 +4,7 @@ import aaf.base.identity.Subject
 
 class AafApplicationBaseGrailsPlugin {
 
-  def version = "0.5.2"
+  def version = "0.6.1"
 
   def grailsVersion = "2.2 > *"
 
@@ -22,6 +22,8 @@ class AafApplicationBaseGrailsPlugin {
   '''
 
   def documentation = "http://www.aaf.edu.au"
+
+  def watchedResources = ["file:./grails-app/**/services/*Service.groovy", "file:./grails-app/controllers/**/*Controller.groovy"]
 
   def doWithWebDescriptor = { xml ->
   }

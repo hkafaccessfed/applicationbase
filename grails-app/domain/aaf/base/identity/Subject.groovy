@@ -25,9 +25,9 @@ class Subject {
 
   static constraints = {
     principal(nullable: false, blank: false, unique:true)
-    cn nullable:false, blank:false
-    email email:true
-    sharedToken nullable:false, blank:false
+    cn nullable:true, blank:false
+    email nullable:true, email:true
+    sharedToken nullable:true, blank:false
   }
 
   static mapping = {

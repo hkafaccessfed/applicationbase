@@ -19,6 +19,16 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     shiroEnvironment.tearDownShiro() 
   }
 
+  def setup() {
+    grailsApplication.config.aaf.base.realms.federated = [
+      require: [
+        sharedtoken: false,
+        cn: false,
+        email: false
+      ]
+    ]
+  }
+
   def 'federatedincomplete'() {
     when:
     controller.federatedincomplete()
@@ -29,7 +39,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def '403 when sp is disabled for federated login'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: false,
       development: [ active: false ],
     ] 
@@ -46,7 +56,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'incomplete and redirect to federatedincomplete when principal not provided'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -70,7 +80,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'incomplete and redirect to federatedincomplete when credential not provided'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -97,7 +107,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
 
   def 'incomplete and redirect to federatedincomplete when user agent not provided'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -124,10 +134,124 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     view == "/federatedSessions/federatedincomplete"
     model.errors[0].contains("Browser User Agent was not presented")
   }
+
+  def 'incomplete and redirect to federatedincomplete when shared token required but not provided'() {
+    setup:
+    grailsApplication.config.aaf.base.realms.federated << [
+      active: true,
+      development: [ active: false ],
+      
+      request: [ attributes: true],
+      
+      mapping: [
+        principal: 'persistent-id', 
+        credential: 'Shib-Session-ID',
+        entityID: 'Shib-Identity-Provider',
+        cn: 'cn',
+        email: 'mail',
+        sharedToken: 'auEduPersonSharedToken',
+      ],
+
+      require: [
+        sharedtoken:true
+      ]
+    ] 
+
+    controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
+    request.setAttribute('persistent-id', 'http://test.com!http://sp.test.com!1234')
+    request.setAttribute('Shib-Session-ID', '1234-mockid-5678')
+    request.setAttribute('Shib-Identity-Provider', 'https://entity.com/id')
+    request.setAttribute('cn', 'Fred Bloggs')
+    request.setAttribute('mail', 'fred@uni.edu.au')
+    request.addHeader("User-Agent", "Google Chrome X.Y")
+
+    when:
+    controller.federatedlogin()
+    
+    then:
+    view == "/federatedSessions/federatedincomplete"
+    model.errors[0].contains("Your identifier (auEduPersonSharedToken) was unable to be obtained from the provided assertion")
+  }
+
+  def 'incomplete and redirect to federatedincomplete when cn not provided'() {
+    setup:
+    grailsApplication.config.aaf.base.realms.federated << [
+      active: true,
+      development: [ active: false ],
+      
+      request: [ attributes: true],
+      
+      mapping: [
+        principal: 'persistent-id', 
+        credential: 'Shib-Session-ID',
+        entityID: 'Shib-Identity-Provider',
+        cn: 'cn',
+        email: 'mail',
+        sharedToken: 'auEduPersonSharedToken',
+      ],
+
+      require: [
+        cn:true
+      ]
+    ] 
+
+    controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
+    request.setAttribute('persistent-id', 'http://test.com!http://sp.test.com!1234')
+    request.setAttribute('Shib-Session-ID', '1234-mockid-5678')
+    request.setAttribute('Shib-Identity-Provider', 'https://entity.com/id')
+    request.setAttribute('mail', 'fred@uni.edu.au')
+    request.setAttribute('auEduPersonSharedToken', 'LGW3wpNaPgwnLoYYsghGbz1')
+    request.addHeader("User-Agent", "Google Chrome X.Y")
+
+    when:
+    controller.federatedlogin()
+    
+    then:
+    view == "/federatedSessions/federatedincomplete"
+    model.errors[0].contains("Your common name (cn, urn:oid:2.5.4.3) was unable to be obtained from the provided assertion")
+  }
+
+  def 'incomplete and redirect to federatedincomplete when email not provided'() {
+    setup:
+    grailsApplication.config.aaf.base.realms.federated << [
+      active: true,
+      development: [ active: false ],
+      
+      request: [ attributes: true],
+      
+      mapping: [
+        principal: 'persistent-id', 
+        credential: 'Shib-Session-ID',
+        entityID: 'Shib-Identity-Provider',
+        cn: 'cn',
+        email: 'mail',
+        sharedToken: 'auEduPersonSharedToken',
+      ],
+
+      require: [
+        email:true
+      ]
+    ] 
+
+    controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
+    request.setAttribute('persistent-id', 'http://test.com!http://sp.test.com!1234')
+    request.setAttribute('Shib-Session-ID', '1234-mockid-5678')
+    request.setAttribute('Shib-Identity-Provider', 'https://entity.com/id')
+    request.setAttribute('cn', 'Bradley Beddoes')
+    request.setAttribute('auEduPersonSharedToken', 'LGW3wpNaPgwnLoYYsghGbz1')
+    request.addHeader("User-Agent", "Google Chrome X.Y")
+
+    when:
+    controller.federatedlogin()
+    
+    then:
+    view == "/federatedSessions/federatedincomplete"
+    model.errors[0].contains("Your email address (mail, urn:oid:0.9.2342.19200300.100.1.3) was unable to be obtained from the provided assertion")
+  }
   
   def 'redirect to root URI when all is valid and no target supplied'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -169,7 +293,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
 
   def 'correctly trim UA when longer then 254 char'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -211,7 +335,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
 
   def 'when using headers redirect to root URI when all is valid and no target supplied'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -253,7 +377,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
 
   def 'when using headers redirect to root URI when all is valid and but no shared token is supplied'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -295,7 +419,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'redirect to target URI when all is valid and target supplied'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -339,7 +463,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'redirect to federatederror when IncorrectCredentialsException thrown'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -379,7 +503,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'redirect to federatederror when DisabledAccountException thrown'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       
@@ -419,7 +543,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   def 'redirect to federatederror when AuthenticationException thrown'() {
     setup:
-    grailsApplication.config.aaf.base.realms.federated = [
+    grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: false ],
       

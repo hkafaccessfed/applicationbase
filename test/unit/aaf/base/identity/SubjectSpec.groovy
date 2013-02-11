@@ -25,11 +25,12 @@ class SubjectSpec extends spock.lang.Specification {
   
   def 'Ensure subject wont validate with non-unique principal'() {    
     when:
-    new Subject(principal:'http://test.edu.au!http://sp.test.edu.au!1234').save()
-    def s = new Subject(principal:'http://test.edu.au!http://test.edu.au!1234').validate()
+    def s1 = new Subject(principal:'http://test.edu.au!http://sp.test.edu.au!1234').save()
+    def s2 = new Subject(principal:'http://test.edu.au!http://sp.test.edu.au!1234')
     
     then:
-    !s
+    !s1.hasErrors()
+    !s2.validate()
   }
   
   def 'Ensure subject will validate'() {    

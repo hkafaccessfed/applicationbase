@@ -2,12 +2,14 @@ import javax.naming.InitialContext
 import javax.naming.Context
 
 // Import externalized configuration
-def externalConf = getFromEnvironment("config_dir")
-if(externalConf) {
-  grails.config.locations = ["file:${externalConf}/application_config.groovy"]
-} else {
-  println "No external configuration location specified as environment variable config_dir, terminating startup"
-  throw new RuntimeException("No external configuration location specified as environment variable config_dir")
+if(Environment.current != Environment.TEST) {
+  def externalConf = getFromEnvironment("config_dir")
+  if(externalConf) {
+    grails.config.locations = ["file:${externalConf}/application_config.groovy"]
+  } else {
+    println "No external configuration location specified as environment variable config_dir, terminating startup"
+    throw new RuntimeException("No external configuration location specified as environment variable config_dir")
+  }
 }
 
 // Extract user details to append to Audit Table

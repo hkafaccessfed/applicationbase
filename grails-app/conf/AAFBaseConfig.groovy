@@ -60,7 +60,10 @@ grails.exceptionresolver.params.exclude = ['password', 'password_confim']
 environments {
   test {
     testDataConfig.enabled = true
-    grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port 
+    
+    grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port
+    grails.mail.default.from="noreply-test@aaf.edu.au"
+    greenmail.disabled = false
 
     log4j = {
       appenders {

@@ -2,6 +2,7 @@ import javax.naming.InitialContext
 import javax.naming.Context
 
 import grails.util.Environment
+import org.apache.log4j.FileAppender
 
 // Import externalized configuration
 if(Environment.current != Environment.TEST) {

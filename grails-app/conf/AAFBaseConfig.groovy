@@ -1,6 +1,8 @@
 import javax.naming.InitialContext
 import javax.naming.Context
 
+import grails.util.Environment
+
 // Import externalized configuration
 if(Environment.current != Environment.TEST) {
   def externalConf = getFromEnvironment("config_dir")
@@ -53,6 +55,25 @@ grails.spring.bean.packages = []
 grails.web.disable.multipart=false
 
 grails.exceptionresolver.params.exclude = ['password', 'password_confim']
+
+environments {
+  test {
+    testDataConfig.enabled = true
+    grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port 
+
+    log4j = {
+      appenders {
+        appender new FileAppender(name:"test-output", layout:pattern(conversionPattern: "%d{[ dd.MM.yy HH:mm:ss.SSS]} %-5p %c %x - %m%n"), file:"/tmp/app-test-output.log")
+      }
+      warn 'test-output'     :[ 'grails.buildtestdata'], additivity:false
+      info  'test-output'    :[ 'grails.app.controllers',
+                                'grails.app.domains',
+                                'grails.app.services',
+                                'grails.app.realms',
+                                'aaf.vhr']
+      } 
+  }
+}
 
 /**
 * This is allows usage of environment variables in production

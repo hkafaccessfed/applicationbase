@@ -60,6 +60,7 @@ make working with the Grails Bootstrap plugin easier.
 }
 
 
+nav {
 
   .navbar {
     margin-bottom: 0px;
@@ -173,7 +174,7 @@ make working with the Grails Bootstrap plugin easier.
       .zero;
     }
   }
-
+}
 
 .dropdown-menu form {
   .zero;

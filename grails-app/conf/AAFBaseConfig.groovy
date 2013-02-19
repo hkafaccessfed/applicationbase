@@ -1,13 +1,18 @@
 import javax.naming.InitialContext
 import javax.naming.Context
 
+import grails.util.Environment
+import org.apache.log4j.FileAppender
+
 // Import externalized configuration
-def externalConf = getFromEnvironment("config_dir")
-if(externalConf) {
-  grails.config.locations = ["file:${externalConf}/application_config.groovy"]
-} else {
-  println "No external configuration location specified as environment variable config_dir, terminating startup"
-  throw new RuntimeException("No external configuration location specified as environment variable config_dir")
+if(Environment.current != Environment.TEST) {
+  def externalConf = getFromEnvironment("config_dir")
+  if(externalConf) {
+    grails.config.locations = ["file:${externalConf}/application_config.groovy"]
+  } else {
+    println "No external configuration location specified as environment variable config_dir, terminating startup"
+    throw new RuntimeException("No external configuration location specified as environment variable config_dir")
+  }
 }
 
 // Extract user details to append to Audit Table
@@ -51,6 +56,25 @@ grails.spring.bean.packages = []
 grails.web.disable.multipart=false
 
 grails.exceptionresolver.params.exclude = ['password', 'password_confim']
+
+environments {
+  test {
+    testDataConfig.enabled = true
+    grails.mail.port = com.icegreen.greenmail.util.ServerSetupTest.SMTP.port 
+
+    log4j = {
+      appenders {
+        appender new FileAppender(name:"test-output", layout:pattern(conversionPattern: "%d{[ dd.MM.yy HH:mm:ss.SSS]} %-5p %c %x - %m%n"), file:"/tmp/app-test-output.log")
+      }
+      warn 'test-output'     :[ 'grails.buildtestdata'], additivity:false
+      info  'test-output'    :[ 'grails.app.controllers',
+                                'grails.app.domains',
+                                'grails.app.services',
+                                'grails.app.realms',
+                                'aaf.vhr']
+      } 
+  }
+}
 
 /**
 * This is allows usage of environment variables in production

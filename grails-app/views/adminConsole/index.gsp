@@ -1,6 +1,6 @@
 <html>
   <head>
-    <meta name="layout" content="public" />
+    <meta name="layout" content="internal" />
   </head>
   <body>
 

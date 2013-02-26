@@ -63,7 +63,7 @@ grails.project.dependency.resolution = {
     runtime ":yui-minify-resources:0.1.4"
     runtime ":database-migration:1.1"
     runtime ":jquery:1.7.2"
-    runtime ":modernizr:2.5.3"
+    runtime ":modernizr:2.6.2"
     runtime (":twitter-bootstrap:2.1.1") { excludes "svn" }
     runtime ":constraintkeys:0.1"
     runtime ":console:1.2"

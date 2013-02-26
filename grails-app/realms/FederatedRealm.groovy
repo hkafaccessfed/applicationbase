@@ -47,7 +47,7 @@ class FederatedRealm {
     Subject.withTransaction {
       Subject subject = Subject.findByPrincipal(token.principal)
 
-      if(!subject)  // Failover to lookup by SharedToken if available
+      if(!subject && token.sharedToken)  // Failover to lookup by SharedToken if available
         subject = Subject.findBySharedToken(token.sharedToken)
 
       if (!subject) {

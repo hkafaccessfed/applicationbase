@@ -30,6 +30,26 @@ $(function() {
     $(this).next('form').submit();
   });
 
+  $('a.archive-ensure').click(function(e) {
+    var btn = $(this)
+    e.preventDefault();
+    bootbox.dialog(btn.data('confirm'), [{
+      'label': "Cancel",
+      'class': "btn"
+    }, {
+      'label': "Archive",
+      'class': "btn-warning",
+      'callback': function() {
+        btn.next('form').submit();
+      }
+    }], {
+      'header': 'Confirm Archive'
+    });
+  });
+
+  $('a.form-link-submitter').click(function(e) {
+    $(this).next('form').submit();
+  });
 });
 
 aaf_base.applyBehaviourTo = function(scope) {

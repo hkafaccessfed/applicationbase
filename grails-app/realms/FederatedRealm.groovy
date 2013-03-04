@@ -81,22 +81,6 @@ class FederatedRealm {
         }
 
         log.info("Created ${subject} from federated attribute statement")
-
-        // If no other subjects exist our first user gets admin rights
-        if(grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate && Subject.count() == 1) {
-          def adminRole = roleService.createRole('super administrators', 'Administrators who have access to all parts of the application', true)
-          roleService.addMember(subject, adminRole)
-
-          def permission = new Permission()
-          permission.type = Permission.defaultPerm
-          permission.target = "*"
-          permission.owner = subject
-          
-          permissionService.createPermission(permission, adminRole)
-
-          log.warn("Created ${adminRole} for application wide administative access and installed ${subject} as a member") 
-        }
-
       } else {
         subject.principal = token.principal   // Ensure we catch EPTID change linked by the same SharedToken value
         subject.cn = token.attributes.cn

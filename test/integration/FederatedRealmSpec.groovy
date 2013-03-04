@@ -258,47 +258,6 @@ class FederatedRealmSpec extends IntegrationSpec {
     subject.id == account.principals.asList()[0]
   }
 
-  def 'ensure Subject is created with global permission when provisioning enabled, data correct and auto_populate is true'() {
-    setup:
-    def token = new FederatedToken()
-    token.principal = 'https://idp.test.com/idp/shibboleth!https://sp.test.com/shibboleth!1234567890'
-    token.credential='1234'
-    grailsApplication.config.aaf.base.realms.federated.active = true
-    grailsApplication.config.aaf.base.realms.federated.auto_provision = true
-    grailsApplication.config.aaf.base.administration.initial_administrator_auto_populate = true
-    token.attributes = [:]
-    token.attributes.cn = "Test User"
-    token.attributes.email = "test@user.com"
-    token.sharedToken = "12345678"
-
-    token.remoteHost="127.0.0.1"
-    token.userAgent="Spock Browser"
-
-    expect:
-    aaf.base.identity.Subject.count() == 0
-    Role.count() == 0
-    Permission.count() == 0
-
-    when:
-    def account = federatedRealm.authenticate(token)
-
-    then:
-    aaf.base.identity.Subject.count() == 1
-    Role.count() == 1
-    Permission.count() == 1
-
-    def subject = aaf.base.identity.Subject.first()
-    subject.principal == token.principal
-    subject.email == token.attributes.email
-    subject.id == account.principals.asList()[0]
-    subject.permissions == null
-
-    def role = aaf.base.identity.Role.first()
-    role.permissions.toArray()[0].target == '*'
-    role.permissions.toArray()[0].type == Permission.defaultPerm
-    role.subjects.toArray()[0] == subject
-  }
-
   def 'ensure Subject is created without global permission when provisioning enabled, data correct, auto_populate is true and Subjects already exist'() {
     setup:
     def token = new FederatedToken()

@@ -40,7 +40,6 @@ class AAFBaseBootStrap {
         def permission = new Permission()
         permission.type = Permission.defaultPerm
         permission.target = "*"
-        permission.owner = adminRole
         
         permissionService.createPermission(permission, adminRole)
 

@@ -45,5 +45,6 @@ application_config.groovy
 cobertura.ser
 .DS_Store
 
+grails-app/i18n/shiro.properties
 
 plugin.xml

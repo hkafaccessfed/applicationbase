@@ -56,7 +56,6 @@ class ApiRealm {
     // Authorize header in format:
     // Authorize: AAF-HMAC-SHA256 token="...", signature="..."
     def authorize = token.request.getHeader('Authorization')
-    println "|$authorize|"
     if(!authorize || !(authorize ==~ authorizeRegex)) {
       log.error "[Requester: ${token.request.remoteHost}] - Authentication halted as Authorize header provides invalid data for AAF-HMAC-SHA256 auth-scheme."
       throw new IncorrectCredentialsException("[Requester: ${token.request.remoteHost}] - Authentication halted as Authorize header provides invalid data for AAF-HMAC-SHA256 auth-scheme.")

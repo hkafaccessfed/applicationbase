@@ -35,7 +35,7 @@ class AuthController {
     if(params.targetUri)
       redirect(uri: params.targetUri)
     else
-      redirect(uri: '/')
+      redirect(controller:'dashboard', action:'welcome')
   }
 
   def poll = {

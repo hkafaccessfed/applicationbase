@@ -49,13 +49,8 @@ class AAFBaseUrlMappings {
       controller = "emailTemplate"
     }
 
-    "/administration/console"{
-      controller = "adminConsole"
-      action="index"
-    }
-
     // Console plugin
-    "/internal/console/$action?/$id?"{
+    "/administration/console/$action?/$id?"{
       controller = "console"
     }
 

@@ -128,7 +128,7 @@ class AuthControllerSpec extends spock.lang.Specification {
     session[AuthController.TARGET] == '/some/test/content'
   }
   
-  def 'that logout will redirect to application root'() {   
+  def 'that logout will redirect to application welcome'() {   
     setup:
     def subject = Mock(org.apache.shiro.subject.Subject)
     subject.isAuthenticated() >> true
@@ -140,7 +140,7 @@ class AuthControllerSpec extends spock.lang.Specification {
     controller.logout()
     
     then:
-    response.redirectedUrl == '/'
+    response.redirectedUrl == '/dashboard/welcome'
   }
 
   def 'that logout will redirect to target URI if present'() {   

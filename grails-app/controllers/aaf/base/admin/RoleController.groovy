@@ -10,7 +10,7 @@ class RoleController {
   def roleService
   def permissionService
 
-  def beforeInterceptor = [action: this.&validRole, except: ['list', 'create', 'save']]
+  def beforeInterceptor = [action: this.&validRole, except: ['list', 'create', 'save', 'finalization', 'finalizationerror']]
 
   def list() {
     [roles: Role.list(),  roleTotal: Role.count()]
@@ -160,6 +160,31 @@ class RoleController {
     flash.type = 'success'
     flash.message = 'controllers.aaf.base.admin.role.deletepermission.success'
     redirect(action: "show", id:  role.id, fragment:"tab-permissions")
+  }
+
+  def finalization() {
+    def roleInvitation = RoleInvitation.findWhere(inviteCode:params.inviteCode)
+    if(!roleInvitation) {
+      log.error "No invitation for ${params.inviteCode}"
+
+      redirect action: "finalizationerror"
+      return
+    }
+
+    if(roleService.finalizeInvitation(roleInvitation)) {
+      log.info "$subject successfully claimed $roleInvitation redirecting to ${roleInvitation.redirectTo}"
+
+      flash.type = 'success'
+      flash.message = 'controllers.aaf.base.admin.role.finalization.success'
+
+      redirect url: roleInvitation.redirectTo
+    } else {
+      log.info "$subject presented invalid invitation"
+      redirect action:'finalizationerror'
+    }
+  }
+
+  def finalizationerror() {
   }
 
   private validRole() {

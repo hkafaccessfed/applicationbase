@@ -46,6 +46,18 @@ class AAFBaseBootStrap {
         log.warn("Created ${adminRole} for application wide administative access") 
       }
 
+      def registered_managed_subject = EmailTemplate.findWhere(name:'role_invitation') 
+      if(!registered_managed_subject) {
+        def templateMarkup = grailsApplication.parentContext.getResource("classpath:aaf/base/identity/role_invitation.gsp").inputStream.text
+        registered_managed_subject = new EmailTemplate(name:'role_invitation', content: templateMarkup)
+        if(!registered_managed_subject.save()) {
+          registered_managed_subject.errors.each {
+            println it
+          }
+          throw new RuntimeException("Unable to populate initial role invitation email template role_invitation")
+        }
+      }
+
     }
 
   }

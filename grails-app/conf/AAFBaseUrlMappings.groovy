@@ -18,6 +18,17 @@ class AAFBaseUrlMappings {
       controller="workflowApproval"
     }
 
+    // Role invitation
+    "/inviteadministrator/finalization/$inviteCode"{
+      controller = "role" 
+      action = "finalization"
+    }
+
+    "/inviteadministrator/error"{
+      controller = "role" 
+      action = "finalizationerror"
+    }
+
     // Administration
     "/administration/dashboard"{
       controller="adminDashboard"
@@ -49,13 +60,8 @@ class AAFBaseUrlMappings {
       controller = "emailTemplate"
     }
 
-    "/administration/console"{
-      controller = "adminConsole"
-      action="index"
-    }
-
     // Console plugin
-    "/internal/console/$action?/$id?"{
+    "/administration/console/$action?/$id?"{
       controller = "console"
     }
 

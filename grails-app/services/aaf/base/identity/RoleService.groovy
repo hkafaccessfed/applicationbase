@@ -1,9 +1,14 @@
 package aaf.base.identity
 
+import org.codehaus.groovy.grails.commons.ApplicationHolder
+import org.springframework.context.i18n.LocaleContextHolder
+import aaf.base.admin.EmailTemplate
+
 class RoleService {
+  private final String TOKEN_EMAIL_SUBJECT ='branding.email.role.invitation'
 
-  boolean transactional = true
-
+  def messageSource
+  
   /**
    * Creates a new role.
    *
@@ -159,5 +164,43 @@ class RoleService {
     }
 
     log.info("Successfully removed $subject from $role")
+  }
+
+  public void sendInvitation(String targetName, String emailAddress, String redirectTo, Role role) {
+    def emailManagerService = ApplicationHolder.application.mainContext.getBean("emailManagerService")
+    def emailSubject = messageSource.getMessage(TOKEN_EMAIL_SUBJECT, [] as Object[], TOKEN_EMAIL_SUBJECT, LocaleContextHolder.locale)
+    def emailTemplate = EmailTemplate.findWhere(name:"role_invitation")
+
+    if(!emailTemplate) {
+      throw new RuntimeException("Email template for inviting new administrators 'role_invitation' does not exist")  // Rollback transaction
+    }
+
+    def invitation = new RoleInvitation(role:role, redirectTo: redirectTo)
+    if(!invitation.save()) {
+      log.error "Failed to create invitation code for $role aborting"
+      invitation.errors.each {
+        log.warn it
+      }
+      throw new RuntimeException("Failed to create invitation code for $role aborting")  // Rollback transaction
+    }
+    emailManagerService.send(emailAddress, emailSubject, emailTemplate, [targetName:targetName, invitee:subject, invitation:invitation]) 
+  }
+
+  public boolean finalizeInvitation(RoleInvitation invitation) {
+    if(invitation.utilized) {
+      log.error "The presented invitation $invitation by $subject has already been used"
+      return false
+    }
+
+    addMember(subject, invitation.role)
+    invitation.utilized = true
+
+    if(!invitation.save()) {
+      log.error "Failed to set invitation $invitation to utilized aborting"
+      throw new RuntimeException("Failed to set invitation $invitation to utilized")
+    }
+
+    log.info ("Added $subject to ${invitation.role} via successful invitation code presentation")
+    true
   }
 }

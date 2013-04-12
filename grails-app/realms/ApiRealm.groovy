@@ -67,8 +67,8 @@ class ApiRealm {
 
     ApiSubject apiSubjectInstance = ApiSubject.findByPrincipal(principal)
     if(!apiSubjectInstance) {
-      log.error("[Requester: ${token.request.remoteHost}] - Authentication halted as token value is invalid")
-      throw new UnknownAccountException("[Requester: ${token.request.remoteHost}] - Authentication halted as token value is invalid")
+      log.error("[Requester: ${token.request.remoteHost}] - Authentication halted as API Subject principal value is invalid")
+      throw new UnknownAccountException("[Requester: ${token.request.remoteHost}] - Authentication halted as API Subject principal value is invalid")
     }
 
     if(!apiSubjectInstance.enabled) {

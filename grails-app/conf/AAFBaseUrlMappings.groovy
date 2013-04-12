@@ -18,6 +18,17 @@ class AAFBaseUrlMappings {
       controller="workflowApproval"
     }
 
+    // Role invitation
+    "/inviteadministrator/finalization/$inviteCode"{
+      controller = "role" 
+      action = "finalization"
+    }
+
+    "/inviteadministrator/error"{
+      controller = "role" 
+      action = "finalizationerror"
+    }
+
     // Administration
     "/administration/dashboard"{
       controller="adminDashboard"

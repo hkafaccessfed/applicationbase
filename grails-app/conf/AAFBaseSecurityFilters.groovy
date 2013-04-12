@@ -55,6 +55,12 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }
     }
 
+    inviteadministrator_authenticated(uri:"/inviteadministrator/**") {
+      before = {
+        accessControl { true }
+      }
+    }
+
     administration_authenticated(uri:"/administration/**") {
       before = {
         accessControl { true }

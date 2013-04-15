@@ -1,29 +1,29 @@
 <html>
   <head>  
     <meta name="layout" content="internal" />
-    <title><g:message code="views.aaf.base.workflow.approval.title" /></title>
+    <title><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.title" /></title>
   </head>
   <body>
     
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li class="active"><g:message code="branding.nav.breadcrumb.workflow.approval"/></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li class="active"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.workflow.approval"/></li>
     </ul>
 
     <g:render template="/templates/flash" />
 
-    <h2><g:message code="views.aaf.base.workflow.approval.heading" /></h2>
+    <h2><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.heading" /></h2>
 
     <g:if test="${tasks}">
-      <p><g:message code="views.aaf.base.workflow.approval.descriptive" /></p>
+      <p><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.descriptive" /></p>
       <table class="table">
         <thead>
           <tr>
-            <th><g:message code="label.name" /></th>
-            <th><g:message code="label.created" /></th>
-            <th><g:message code="label.creator" /></th>
-            <th><g:message code="label.processinstance" /></th>
-            <th><g:message code="label.action" /></th>
+            <th><g:message encodeAs='HTML' code="label.name" /></th>
+            <th><g:message encodeAs='HTML' code="label.created" /></th>
+            <th><g:message encodeAs='HTML' code="label.creator" /></th>
+            <th><g:message encodeAs='HTML' code="label.processinstance" /></th>
+            <th><g:message encodeAs='HTML' code="label.action" /></th>
           </tr>
         </thead>
         <tbody>
@@ -36,21 +36,21 @@
                   <g:link controller="subject" action="show" id="${instance.processInstance.params.creator}">${fieldValue(bean: contact, field: "givenName")} ${fieldValue(bean: contact, field: "surname")}</g:link>
                 </g:if>
                 <g:else>
-                  <g:message code="label.publiccreation" />
+                  <g:message encodeAs='HTML' code="label.publiccreation" />
                 </g:else>
               <td>
                 ${fieldValue(bean: instance, field: "processInstance.description")}
                 <br><br>
                 <g:if test="${instance.processInstance.params.containsKey('identityProvider')}">
-                  <g:link controller='identityProvider' action='show' id="${instance.processInstance.params.identityProvider}" class="btn"><g:message code="label.view"/> <g:message code="label.identityprovider"/></g:link><br><br>
+                  <g:link controller='identityProvider' action='show' id="${instance.processInstance.params.identityProvider}" class="btn"><g:message encodeAs='HTML' code="label.view"/> <g:message encodeAs='HTML' code="label.identityprovider"/></g:link><br><br>
                 </g:if>
                 <g:else>
                   <g:if test="${instance.processInstance.params.containsKey('serviceProvider')}">
-                    <g:link controller='serviceProvider' action='show' id="${instance.processInstance.params.serviceProvider}" class="btn"><g:message code="label.view"/> <g:message code="label.serviceprovider"/></g:link><br><br>
+                    <g:link controller='serviceProvider' action='show' id="${instance.processInstance.params.serviceProvider}" class="btn"><g:message encodeAs='HTML' code="label.view"/> <g:message encodeAs='HTML' code="label.serviceprovider"/></g:link><br><br>
                   </g:if>
                   <g:else>
                     <g:if test="${instance.processInstance.params.containsKey('organization') && instance.processInstance.params.organization.isNumber()}">
-                      <g:link controller='organization' action='show' id="${instance.processInstance.params.organization}" class="btn"><g:message code="label.view"/> <g:message code="label.organization"/></g:link><br><br>
+                      <g:link controller='organization' action='show' id="${instance.processInstance.params.organization}" class="btn"><g:message encodeAs='HTML' code="label.view"/> <g:message encodeAs='HTML' code="label.organization"/></g:link><br><br>
                     </g:if>
                   </g:else>
                 </g:else>  
@@ -77,7 +77,7 @@
       </table>
     </g:if>
     <g:else>
-      <p class="alert alert-info"><g:message code="views.aaf.base.workflow.approval.nothing" /></p>
+      <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.nothing" /></p>
     </g:else>
 
   </body>

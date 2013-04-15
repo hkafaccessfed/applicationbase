@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><g:message code='branding.application.name'/></title>
+    <title><g:message encodeAs='HTML' code='branding.application.name'/></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <r:require modules="modernizr, bootstrap, bootstrap-responsive-css, bootstrap-notify, bootstrap-datepicker, bootbox, less, validate, datatables, formrestrict, app"/>

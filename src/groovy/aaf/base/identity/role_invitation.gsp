@@ -1,7 +1,7 @@
 Hello,<br><br>
 
 Your colleague ${invitee.cn.encodeAsHTML()} (${invitee.email.encodeAsHTML()}) has granted you administrative
-rights for managing <strong>${targetName.encodeAsHTML()}</strong> within the <g:message code="branding.application.name"/>.<br><br>
+rights for managing <strong>${targetName.encodeAsHTML()}</strong> within the <g:message encodeAs='HTML' code="branding.application.name"/>.<br><br>
 
 <h5>Your action is now required</h5>
 

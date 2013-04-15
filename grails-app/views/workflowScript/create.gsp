@@ -7,16 +7,16 @@
   <body>
 
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li><g:link controller="adminDashboard"><g:message code="branding.nav.breadcrumb.admin"/></g:link> <span class="divider">/</span></li>
-      <li><g:link controller="workflowScript" action="list"><g:message code="branding.nav.breadcrumb.workflow.script"/></g:link> <span class="divider">/</span></li>
-      <li class="active"><g:message code="branding.nav.breadcrumb.workflow.script.create"/></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li><g:link controller="adminDashboard"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.admin"/></g:link> <span class="divider">/</span></li>
+      <li><g:link controller="workflowScript" action="list"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.workflow.script"/></g:link> <span class="divider">/</span></li>
+      <li class="active"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.workflow.script.create"/></li>
     </ul>
 
     <g:render template="/templates/flash" />
     <g:render template="/templates/errors_bean" model="['bean':script]"/>
 
-    <h2><g:message code="views.aaf.base.workflow.script.create.heading" /></h2>
+    <h2><g:message encodeAs='HTML' code="views.aaf.base.workflow.script.create.heading" /></h2>
     
       <g:form action="save" class="form-validating">
         <div class="row">
@@ -24,11 +24,11 @@
             <table class="table table-borderless">
               <tbody>
                 <tr>
-                  <td><label for="name"><g:message code="label.name" /></label></td>
+                  <td><label for="name"><g:message encodeAs='HTML' code="label.name" /></label></td>
                   <td><g:textField name="name" value="${script.name ?: ''}" class="required"/></td>
                 </tr>
                 <tr>
-                  <td><label for="description"><g:message code="label.description" /></label></td>
+                  <td><label for="description"><g:message encodeAs='HTML' code="label.description" /></label></td>
                   <td><g:textField name="description" value="${script.description ?: ''}" class="required"/></td>
                 </tr>
               </tbody>
@@ -39,8 +39,8 @@
           </div>
         </div>
         <div class="form-actions">
-          <button type="submit" class="btn btn-success"/><g:message code="label.create" /></button>
-          <g:link class="btn" controller="workflowScript" action="list"><g:message code="label.cancel"/></g:link>
+          <button type="submit" class="btn btn-success"/><g:message encodeAs='HTML' code="label.create" /></button>
+          <g:link class="btn" controller="workflowScript" action="list"><g:message encodeAs='HTML' code="label.cancel"/></g:link>
         </div>
       </g:form>
     

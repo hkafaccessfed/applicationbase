@@ -29,8 +29,10 @@ class AuthController {
   }
   
   def logout = {
-    log.info("Signing out subject [${subject?.id}]${subject?.principal}")
+    log.info("Signing out subject [${subject?.id}] ${subject?.cn} (${subject.email}")
+    
     SecurityUtils.subject?.logout()
+    session.invalidate()
 
     if(params.targetUri)
       redirect(uri: params.targetUri)

@@ -49,6 +49,12 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }
     }
 
+    logout(controller: 'auth', action: '*', exclude:'login') {
+      before = {
+        accessControl { true }
+      }
+    }
+
     workflow_authenticated(uri:"/workflow/**") {
       before = {
         accessControl { true }

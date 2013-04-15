@@ -14,7 +14,7 @@
       def embeddedPropNames = p.component.persistentProperties*.name
       def embeddedProps = p.component.properties.findAll { embeddedPropNames.contains(it.name) && !excludedProps.contains(it.name) }
       Collections.sort(embeddedProps, comparator.constructors[0].newInstance([p.component] as Object[]))
-      %><fieldset class="embedded"><legend><g:message code="label.${p.name}"/></legend><%
+      %><fieldset class="embedded"><legend><g:message encodeAs='HTML' code="label.${p.name}"/></legend><%
         for (ep in p.component.properties) {
           renderFieldForProperty(ep, p.component, "${p.name}.")
         }
@@ -35,10 +35,10 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
   }
   if (display) { %>
   <div class="control-group \${hasErrors(bean: ${propertyName}, field: '${prefix}${p.name}', 'error')}">
-    <label class="control-label" for="${prefix}${p.name}"><g:message code="label.${p.name.toLowerCase()}"/></label>
+    <label class="control-label" for="${prefix}${p.name}"><g:message encodeAs='HTML' code="label.${p.name.toLowerCase()}"/></label>
     <div class="controls">
       ${renderEditor(p)}
-      <a href="#" rel="tooltip" title="\${g.message(code:'help.inline.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.${p.name.toLowerCase()}')}"><i class="icon icon-question-sign"></i></a>
+      <a href="#" rel="tooltip" title="\${g.message(encodeAs:'HTML', code:'help.inline.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.${p.name.toLowerCase()}')}"><i class="icon icon-question-sign"></i></a>
     </div>
   </div>
 <%  }   } %>

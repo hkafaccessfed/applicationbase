@@ -8,7 +8,7 @@
       <div class="row">
         <div class="span12">
           <div class="hero-unit">
-              <h2>Development Login - <g:message code='branding.application.name' /></h2>
+              <h2>Development Login - <g:message encodeAs='HTML' code='branding.application.name' /></h2>
               <p>Please choose either federated or local account login for development purposes. For each local account in development mode different access levels are provided.</p>
               <p>This functionality <strong>is not available in production</strong>  (.WAR) deployments.</p>
           </div>

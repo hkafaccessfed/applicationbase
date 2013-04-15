@@ -7,35 +7,35 @@
   <body>
 
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li><g:link action="list"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></g:link> <span class="divider">/</span></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li><g:link action="list"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></g:link> <span class="divider">/</span></li>
       <li><g:fieldValue bean="\${${propertyName}}" field="id"/></li>
     </ul>
 
     <g:render template="/templates/flash" plugin="aafApplicationBase"/>
     <g:render template="/templates/errors_bean" model="['bean':${propertyName}]" plugin="aafApplicationBase"/>
 
-    <h2><g:message code="views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.show.heading" args="[]"/></h2>
+    <h2><g:message encodeAs='HTML' code="views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.show.heading" args="[]"/></h2>
 
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message code="label.overview" /></a></li>
+      <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message encodeAs='HTML' code="label.overview" /></a></li>
 
       <aaf:hasAnyPermission in='["app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:edit","app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:delete"]'>
       <li class="dropdown pull-right">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <g:message code="label.actions" />
+          <g:message encodeAs='HTML' code="label.actions" />
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
           <aaf:hasPermission target="app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:edit">
             <li>
-              <g:link action="edit" id="\${${propertyName}.id}"><g:message code="label.edit"/></g:link>
+              <g:link action="edit" id="\${${propertyName}.id}"><g:message encodeAs='HTML' code="label.edit"/></g:link>
             </li>
           </aaf:hasPermission>
 
           <aaf:hasPermission target="app:manage:${domainClass.name.toLowerCase()}:\${${propertyName}.id}:delete">
             <li>
-              <a href="#" class="delete-ensure" data-confirm="\${message(code:'views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.confirm.remove')}"><g:message code="label.delete"/></a>
+              <a href="#" class="delete-ensure" data-confirm="\${message(code:'views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.confirm.remove')}"><g:message encodeAs='HTML' code="label.delete"/></a>
               <g:form action="delete" method="delete">
                 <g:hiddenField name="id" value="\${${propertyName}.id}" />
               </g:form>
@@ -56,7 +56,7 @@
             Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
             props.each { p -> %>
             <tr>
-              <th class="span4"><span id="${p.name.toLowerCase()}-label"><strong><g:message code="label.${p.name.toLowerCase()}" /></strong></span></th><%  if (p.isEnum()) { %>
+              <th class="span4"><span id="${p.name.toLowerCase()}-label"><strong><g:message encodeAs='HTML' code="label.${p.name.toLowerCase()}" /></strong></span></th><%  if (p.isEnum()) { %>
               <td><span aria-labelledby="${p.name.toLowerCase()}-label"><g:fieldValue bean="\${${propertyName}}" field="${p.name}"/></span>
               <%  } else if (p.oneToMany || p.manyToMany) { %>
               <g:if test="\${${propertyName}.${p.name}}">
@@ -65,7 +65,7 @@
                 </g:each>
               </g:if>
               <g:else>
-                <td><span aria-labelledby="${p.name.toLowerCase()}-label"><g:message code="label.none" /></span>
+                <td><span aria-labelledby="${p.name.toLowerCase()}-label"><g:message encodeAs='HTML' code="label.none" /></span>
               </g:else>
             <%  } else if (p.manyToOne || p.oneToOne) { %>
               <td><span aria-labelledby="${p.name.toLowerCase()}-label"><g:link controller="${p.referencedDomainClass?.propertyName}" action="show" id="\${${propertyName}?.${p.name}?.id}">\${${propertyName}?.${p.name}?.encodeAsHTML()}</g:link></span>

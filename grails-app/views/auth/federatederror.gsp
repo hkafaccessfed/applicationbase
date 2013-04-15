@@ -6,13 +6,13 @@
   <body>
     <div class="row">
       <div class="span12">
-        <h2><g:message code="views.aaf.base.identity.auth.federatederror.heading"/></h2>
+        <h2><g:message encodeAs='HTML' code="views.aaf.base.identity.auth.federatederror.heading"/></h2>
 
         <div class="alert alert-block alert-error">
-          <p><g:message code="views.aaf.base.identity.auth.federatederror.details"/></p>
+          <p><g:message encodeAs='HTML' code="views.aaf.base.identity.auth.federatederror.details"/></p>
         </div>
 
-        <p><g:message code="branding.application.supportdesk"/></p>
+        <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
         
         <br><br><br>
 

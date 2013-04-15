@@ -4,21 +4,21 @@
   </head>
   
   <body>
-    <h2><g:message code="views.aaf.base.identity.federatedsessions.federatedincomplete.heading"/></h2>
+    <h2><g:message encodeAs='HTML' code="views.aaf.base.identity.federatedsessions.federatedincomplete.heading"/></h2>
 
     <div class="alert alert-block alert-error">
-      <p><g:message code="views.aaf.base.identity.federatedsessions.federatedincomplete.details"/></p>
+      <p><g:message encodeAs='HTML' code="views.aaf.base.identity.federatedsessions.federatedincomplete.details"/></p>
     
       <g:if test="${errors?.size() > 0}">
         <ul>
           <g:each in="${errors}" var="msg">
-            <li><g:message code="${msg}" /></li>
+            <li><g:message encodeAs='HTML' code="${msg}" /></li>
           </g:each>
         </ul>
       </g:if>
     </div>
 
-    <p><g:message code="branding.application.supportdesk"/></p>
+    <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
     <br><br><br>
 
     <h4 class="muted">Complete Request Details</h4>

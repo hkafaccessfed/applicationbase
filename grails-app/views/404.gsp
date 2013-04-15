@@ -8,12 +8,12 @@
     <div class="row">
       <div class="span12">
         <div class="hero-unit">
-          <h1><g:message code="branding.errors.404.heading"/></h1>
+          <h1><g:message encodeAs='HTML' code="branding.errors.404.heading"/></h1>
           <p>
-            <g:message code="branding.errors.404.descriptive"/>
+            <g:message encodeAs='HTML' code="branding.errors.404.descriptive"/>
           </p>
         </div>
-        <p><g:message code="branding.application.supportdesk"/></p>
+        <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
       </div>
     </div>
 

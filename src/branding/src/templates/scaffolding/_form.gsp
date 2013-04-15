@@ -38,7 +38,7 @@ private renderFieldForProperty(p, owningClass, prefix = "") {
     <label class="control-label" for="${prefix}${p.name}"><g:message encodeAs='HTML' code="label.${p.name.toLowerCase()}"/></label>
     <div class="controls">
       ${renderEditor(p)}
-      <a href="#" rel="tooltip" title="\${g.message(code:'help.inline.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.${p.name.toLowerCase()}')}"><i class="icon icon-question-sign"></i></a>
+      <a href="#" rel="tooltip" title="\${g.message(encodeAs:'HTML', code:'help.inline.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.${p.name.toLowerCase()}')}"><i class="icon icon-question-sign"></i></a>
     </div>
   </div>
 <%  }   } %>

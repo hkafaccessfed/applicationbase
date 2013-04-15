@@ -56,7 +56,7 @@
               </td>
               <td>
                 <g:form action="approve" id="${instance.id}" name="submitapproval${i}" style="margin-bottom:24px; padding:0;">
-                  <g:submitButton name="submit" class="btn btn-success" value="${g.message(code:'label.approve')}"/>
+                  <g:submitButton name="submit" class="btn btn-success" value="${g.message(encodeAs:'HTML', code:'label.approve')}"/>
                 </g:form>
                 <g:each in="${instance.task.rejections}" var="rej">
                     <g:form action="reject" id="${instance.id}" name="submitrejection${i}" style="margin:1px; padding:0;">

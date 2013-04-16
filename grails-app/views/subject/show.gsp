@@ -101,7 +101,7 @@
           </table>
         </g:if>
         <g:else>
-          <p class="alert alert-info">This subject currently has no role membership.</p>
+          <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.admin.subject.show.noroles" /></p>
         </g:else>
       </div>
 
@@ -133,7 +133,7 @@
           </table>
         </g:if>
         <g:else>
-          <p class="alert alert-info">This subject currently has no directly associated permissions.</p>
+          <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.admin.subject.show.nopermissions" /></p>
         </g:else>
 
         <g:form method="post" class="form-horizontal form-validating">

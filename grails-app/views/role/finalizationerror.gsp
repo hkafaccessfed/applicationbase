@@ -9,7 +9,7 @@
       <g:message encodeAs='HTML' code="branding.errors.invitation.descriptive"/>
     </p>
     <p>
-      <g:message encodeAs='HTML' code="branding.application.supportdesk"/>
+      <g:message code="branding.application.supportdesk"/>
     </p>
 
   </body>

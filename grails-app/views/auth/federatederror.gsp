@@ -12,7 +12,7 @@
           <p><g:message encodeAs='HTML' code="views.aaf.base.identity.auth.federatederror.details"/></p>
         </div>
 
-        <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
+        <p><g:message code="branding.application.supportdesk"/></p>
         
         <br><br><br>
 

@@ -18,7 +18,7 @@
       </g:if>
     </div>
 
-    <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
+    <p><g:message code="branding.application.supportdesk"/></p>
     <br><br><br>
 
     <h4 class="muted">Complete Request Details</h4>

@@ -58,10 +58,6 @@ aaf {
     // Deployed AAF environment [development | test | production]
     deployment_environment = "development"
 
-    administration {
-      initial_administrator_auto_populate = false
-    }
-
     realms {
       federated { 
         active = true

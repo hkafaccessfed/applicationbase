@@ -43,6 +43,7 @@ If you're new to this space you'll want to get a few things up and running befor
 		java version "1.7.0_07"
 		Java(TM) SE Runtime Environment (build 1.7.0_07-b10)
 		Java HotSpot(TM) 64-Bit Server VM (build 23.3-b01, mixed mode)
+    
 You can find [offical Oracle JDK downloads here](http://www.oracle.com/technetwork/java/javase/downloads/index.html) or alternatively use an OpenJDK which works just as well.
 
 3. Ensure you have a JAVA_HOME and appropriate JAVA_OPTS environment variables defined in your `~/.bash_profile`, here is an example of mine:
@@ -97,9 +98,6 @@ Setting the following:
     appName="lowercasenameofapp"  e.g. "federationregistry"
     grails.serverURL="http://brainslave.dev.bradleybeddoes.com:8080/lowercasenameofapp"
     *This is your your dev machine, include appName, no trailing /*
-
-    initial_administrator_auto_populate = true     
-    *This will make dev easier, ensure FALSE in production*
 
     development {
       active = true

@@ -13,6 +13,11 @@ class AAFBaseUrlMappings {
       controller = "auth"
     }
 
+    "/logout"{
+      controller = "auth"
+      action = "logout"
+    }
+
     // Workflow
     "/workflow/approval/$action?/$id?" {
       controller="workflowApproval"

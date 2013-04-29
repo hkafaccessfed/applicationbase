@@ -84,16 +84,31 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }
     }
 
+    console_bootstrap(controller:"console") {
+      before = {
+        if (grailsApplication.config.aaf.base.bootstrap) {
+          log.info("secfilter: ALLOWED BOOTSTRAP CONSOLE - ${request.remoteAddr}|$params.controller/$params.action")
+          return true
+        }
+
+        accessControl { true }
+      }
+    }
+
     console(controller:"console") {
       before = {
-        if (!accessControl { permission("app:administration") }) {
-          log.info("secfilter: DENIED - [${subject.id}]${subject.principal}|${request.remoteAddr}|$params.controller/$params.action")
+        if (!grailsApplication.config.aaf.base.bootstrap) {
+          if(accessControl { permission("app:administration") }) {
+            log.info("secfilter: ALLOWED CONSOLE - [${subject?.id}]${subject?.principal}|${request.remoteAddr}|$params.controller/$params.action")
+            return true
+          }
+
+          log.info("secfilter: DENIED CONSOLE - [${subject?.id}]${subject?.principal}|${request.remoteAddr}|$params.controller/$params.action")
           response.sendError(404) // Deliberately not 403 so endpoint can't be figured out.
           return false
         }
-        log.info("secfilter: ALLOWED - [$subject.id]$subject.principal|${request.remoteAddr}|$params.controller/$params.action")
-      }
+      }   
     }
+
   }
-  
 }

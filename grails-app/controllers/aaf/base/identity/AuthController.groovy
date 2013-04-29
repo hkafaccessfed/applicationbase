@@ -29,7 +29,10 @@ class AuthController {
   }
   
   def logout = {
-    log.info("Signing out subject [${subject?.id}] ${subject?.cn} (${subject.email}")
+    if(subject)
+      log.info("Signing out subject [${subject?.id}] ${subject?.cn} - ${subject?.email}")
+    else
+      log.info("Signing out session with no active subject")
     
     SecurityUtils.subject?.logout()
     session.invalidate()

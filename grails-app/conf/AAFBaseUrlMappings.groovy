@@ -66,7 +66,12 @@ class AAFBaseUrlMappings {
     }
 
     // Console plugin
-    "/administration/console/$action?/$id?"{
+    "/console"{
+      controller = "console"
+      action = "index"
+    }
+
+    "/console/$action"{
       controller = "console"
     }
 

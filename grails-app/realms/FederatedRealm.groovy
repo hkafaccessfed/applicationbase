@@ -92,6 +92,11 @@ class FederatedRealm {
           subject.email = token.attributes.email.toLowerCase()
         }
 
+        // If we start recieving ST for an existing account then store it
+        if(subject.sharedToken == null && token.sharedToken) {
+          subject.sharedToken = token.sharedToken
+        }
+
         if (subject.sharedToken != token.sharedToken) {
           log.error("Authentication halted for ${subject} as current sharedToken ${subject.sharedToken} does not match incoming token ${token.sharedToken}")
           throw new IncorrectCredentialsException("${subject} authentication halted as current sharedToken ${subject.sharedToken} does not match incoming token ${token.sharedToken}")

@@ -13,6 +13,11 @@ class AAFBaseUrlMappings {
       controller = "auth"
     }
 
+    "/logout"{
+      controller = "auth"
+      action = "logout"
+    }
+
     // Workflow
     "/workflow/approval/$action?/$id?" {
       controller="workflowApproval"
@@ -61,7 +66,12 @@ class AAFBaseUrlMappings {
     }
 
     // Console plugin
-    "/administration/console/$action?/$id?"{
+    "/console"{
+      controller = "console"
+      action = "index"
+    }
+
+    "/console/$action"{
       controller = "console"
     }
 

@@ -51,16 +51,16 @@ environments {
 
 aaf {
   base {
-    //Session Expiry Warning - minutes
+
+    // Bootstrap - Allows unauthenticated access to administrative console
+    bootstrap = false
+
+    // Session Expiry Warning - minutes
     session_warning = 50 
     session_decision_time = 5
 
     // Deployed AAF environment [development | test | production]
     deployment_environment = "development"
-
-    administration {
-      initial_administrator_auto_populate = false
-    }
 
     realms {
       federated { 

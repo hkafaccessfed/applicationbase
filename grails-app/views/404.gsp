@@ -13,7 +13,7 @@
             <g:message encodeAs='HTML' code="branding.errors.404.descriptive"/>
           </p>
         </div>
-        <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
+        <p><g:message code="branding.application.supportdesk"/></p>
       </div>
     </div>
 

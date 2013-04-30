@@ -62,7 +62,7 @@
           </table>
         </div>
         <div id="editor-role" class="revealable">
-          <h3>Editing Role</h3>
+          <h3><g:message encodeAs='HTML' code="label.editingrole"/></h3>
 
           <g:hasErrors bean="${role}">
           <ul class="clean alert alert-error">
@@ -178,9 +178,8 @@
       </div>
     </div>
 
-<r:script>
-var searchNewMembersEndpoint = "${createLink(controller:'role', action:'searchNewMembers', id:role.id)}";
-</r:script>
-
+    <r:script>
+      var searchNewMembersEndpoint = "${createLink(controller:'role', action:'searchNewMembers', id:role.id)}";
+    </r:script>
   </body>
 </html>

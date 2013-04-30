@@ -18,10 +18,10 @@
       </g:if>
     </div>
 
-    <p><g:message encodeAs='HTML' code="branding.application.supportdesk"/></p>
+    <p><g:message code="branding.application.supportdesk"/></p>
     <br><br><br>
 
-    <h4 class="muted">Complete Request Details</h4>
+    <h4 class="muted"><g:message encodeAs='HTML' code="views.aaf.base.identity.auth.federatederror.details.completedetails"/></h4>
     <g:include controller="auth" action="echo" />
 
   </body>

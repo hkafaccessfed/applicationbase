@@ -9,9 +9,11 @@ class ApiSubject extends Subject {
   static auditable = true
 
   String apiKey
+  String description
 
   static constraints = {
     apiKey nullable:false, blank:false
+    description nullable:false, blank: false
   }
 
   static mapping = {

@@ -49,6 +49,10 @@ class AAFBaseUrlMappings {
       controller = "subject" 
     }
 
+    "/administration/apisubjects/$action?/$id?"{
+      controller = "apiSubject" 
+    }
+
     "/administration/roles/$action?/$id?"{
       controller = "role" 
     }

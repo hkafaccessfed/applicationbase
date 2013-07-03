@@ -27,13 +27,13 @@
           <div class="">
             <h3>Fred Bloggs</h3>
             <p>Principal: https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-1</p>
-              <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
-              <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!https://manager.aaf.edu.au/shibboleth!8698dde3-d9cd-4c44-928c-2b6836bcc4bb" />
-              <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz1" />
+              <g:form controller="federatedSessions" action="federatedlogin" method="post">
+              <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!https://manager.aaf.edu.au/shibboleth!8698dde3-d9cd-4c44-928c-2b6836bcc4bb" />
+              <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
+              <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz1" />
               <g:hiddenField name="attributes.cn" value="Fred Bloggs" />
               <g:hiddenField name="attributes.email" value="fredbloggs@one.edu.au" />
-              <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
 
               <g:submitButton name="Login as Fred Bloggs" class="btn btn-success btn-large"/>
             </g:form>
@@ -41,13 +41,13 @@
           <div class="">
             <h3>Joe Schmoe</h3>
             <p>Principal: https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-2</p>
-              <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
-              <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-2" />
-              <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz2" />
+              <g:form controller="federatedSessions" action="federatedlogin" method="post">
+              <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-2" />
+              <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
+              <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz2" />
               <g:hiddenField name="attributes.cn" value="Joe Schmoe" />
               <g:hiddenField name="attributes.email" value="joeschmoe@one.edu.au" />
-              <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
 
               <g:submitButton name="Login as Joe Schmoe" class="btn btn-warning btn-large"/>
             </g:form>
@@ -55,13 +55,13 @@
           <div class="">
             <h3>Max Mustermann</h3>
             <p>Principal: https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-3</em></strong></p>
-              <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
-              <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-3" />
-              <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz3" />
+              <g:form controller="federatedSessions" action="federatedlogin" method="post">
+              <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-3" />
+              <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
+              <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz3" />
               <g:hiddenField name="attributes.cn" value="Max Mustermann" />
               <g:hiddenField name="attributes.email" value="maxmustermann@one.edu.au" />
-              <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
 
               <g:submitButton name="Login as Max Mustermann" class="btn btn-large"/>
             </g:form>
@@ -69,15 +69,45 @@
           <div class="">
             <h3>Иван Петров</h3>
             <p>Principal: https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-4</em></strong></p>
-              <g:form controller="federatedDevelopmentSessions" action="locallogin" method="post">
-              <g:hiddenField name="principal" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-4" />
-              <g:hiddenField name="credential" value="fake-sessionid-webform" />
-              <g:hiddenField name="sharedToken" value="LGW3wpNaPgwnLoYYsghGbz4" />
+              <g:form controller="federatedSessions" action="federatedlogin" method="post">
+              <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-4" />
+              <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
+              <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz4" />
               <g:hiddenField name="attributes.cn" value="Иван Петров" />
-              <g:hiddenField name="attributes.email" value="i.petrov@one.edu.au" />
-              <g:hiddenField name="attributes.entityID" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.mail" value="i.petrov@one.edu.au" />
 
               <g:submitButton name="Login as Иван Петров" class="btn btn-danger btn-large"/>
+            </g:form>
+          </div>
+          <div class="">
+            <h3>Johnny Moreattr</h3>
+            <p>Principal: https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-5</p>
+            <g:form controller="federatedSessions" action="federatedlogin" method="post">
+              <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-5"/>
+              <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
+              <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz5" />
+              <g:hiddenField name="attributes.cn" value="Johnny Moreattr" />
+              <g:hiddenField name="attributes.mail" value="johnnymoreattr@one.edu.au" />
+
+              <g:hiddenField name="attributes.displayName" value="Johnny Johnson Johndel Moreattr" />
+              <g:hiddenField name="attributes.assurance" value="urn:mace:aaf.edu.au:iap-test-values:id:1" />
+              <g:hiddenField name="attributes.unscoped-affiliation" value="member" />
+              <g:hiddenField name="attributes.affiliation" value="member@one.edu.au" />
+              <g:hiddenField name="attributes.entitlement" value="http://test.aaf.edu.au/entitlements/test" />
+              <g:hiddenField name="attributes.o" value="One University" />
+              <g:hiddenField name="attributes.authenticationMethod" value="urn:mace:aaf.edu.au:iap:authn:0" />
+              <g:hiddenField name="attributes.givenName" value="Johnny" />
+              <g:hiddenField name="attributes.sn" value="Moreattr" />
+              <g:hiddenField name="attributes.mobileNumber" value="+611234567890" />
+              <g:hiddenField name="attributes.telephoneNumber" value="+619876543210" />
+              <g:hiddenField name="attributes.postalAddress" value="1 One University St, Onesville" />
+              <g:hiddenField name="attributes.organizationalUnit" value="Section One" />
+              <g:hiddenField name="attributes.homeOrganization" value="One University" />
+              <g:hiddenField name="attributes.homeOrganizationType" value="urn:mace:terena.org:schac:homeOrganizationType:int:university" />
+
+              <g:submitButton name="Login as Johnny Moreattr" class="btn btn-info btn-large"/>
             </g:form>
           </div>
       </div>

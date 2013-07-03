@@ -6,6 +6,7 @@ import org.springframework.beans.factory.InitializingBean
 class AAFBaseSecurityFilters implements InitializingBean  {
 
   def grailsApplication
+  def developmentAttributesService
 
   String VALID_REFERER
   String DATE_FORMAT
@@ -110,5 +111,15 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }   
     }
 
+    developmentAttributes(controller:'federatedSessions', action:'federatedlogin') {
+      before = {
+        if (grailsApplication.config.aaf.base.realms.federated.development.active) {
+          developmentAttributesService.storeAttributes(request, session, params)
+          developmentAttributesService.injectAttributes(request, session)
+        }
+
+        return true
+      }
+    }
   }
 }

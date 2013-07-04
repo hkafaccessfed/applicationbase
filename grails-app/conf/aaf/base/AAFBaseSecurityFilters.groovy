@@ -120,7 +120,7 @@ class AAFBaseSecurityFilters implements InitializingBean  {
           developmentAttributesService.injectAttributes(request, session)
         }
 
-        return true
+        true
       }
     }
   }

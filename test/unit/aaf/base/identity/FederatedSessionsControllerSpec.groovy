@@ -589,6 +589,9 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
       developmentAttributesService()
     }
 
+    grailsApplication.config.grails.serverURL = 'localhost'
+    request.addHeader('Referer', 'localhost')
+
     grailsApplication.config.aaf.base.realms.federated << [
       active: true,
       development: [ active: true ],
@@ -610,7 +613,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     params.'attributes.Shib-Session-ID' = '1234-mockid-5678'
     params.'attributes.Shib-Identity-Provider' = 'https://entity.com/id'
     params.'attributes.cn' = 'Fred Bloggs'
-    params.'attributes.mail' = 'fred@uni.edu.au'
+    params.'attributes.mail' = 'fred-injected@uni.edu.au'
     params.'attributes.auEduPersonSharedToken' = 'LGW3wpNaPgwnLoYYsghGbz1'
     request.addHeader("User-Agent", "Google Chrome X.Y")
 

@@ -11,6 +11,8 @@ import org.codehaus.groovy.grails.commons.ConfigurationHolder
 import test.shared.ShiroEnvironment
 
 @TestFor(aaf.base.identity.FederatedSessionsController)
+@TestMixin([grails.test.mixin.support.GrailsUnitTestMixin, grails.test.mixin.web.FiltersUnitTestMixin])
+@Mock(aaf.base.AAFBaseSecurityFilters)
 class FederatedSessionsControllerSpec extends spock.lang.Specification {
   
   @Shared def shiroEnvironment = new ShiroEnvironment()
@@ -579,6 +581,55 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     then:
     1 * subject.login( _ as FederatedToken ) >> { throw new AuthenticationException('test') }
     response.redirectedUrl == "/auth/federatederror"
+  }
+
+  def 'accept injected attributes when in development mode'() {
+    setup:
+    defineBeans {
+      developmentAttributesService()
+    }
+
+    grailsApplication.config.aaf.base.realms.federated << [
+      active: true,
+      development: [ active: true ],
+
+      request: [ attributes: true ],
+
+      mapping: [
+        principal: 'persistent-id',
+        credential: 'Shib-Session-ID',
+        entityID: 'Shib-Identity-Provider',
+        cn: 'cn',
+        email: 'mail',
+        sharedToken: 'auEduPersonSharedToken',
+      ]
+    ]
+
+    controller.metaClass.getGrailsApplication = { -> [config: ConfigurationHolder.config]}
+    params.'attributes.persistent-id' = 'http://test.com!http://sp.test.com!1234'
+    params.'attributes.Shib-Session-ID' = '1234-mockid-5678'
+    params.'attributes.Shib-Identity-Provider' = 'https://entity.com/id'
+    params.'attributes.cn' = 'Fred Bloggs'
+    params.'attributes.mail' = 'fred@uni.edu.au'
+    params.'attributes.auEduPersonSharedToken' = 'LGW3wpNaPgwnLoYYsghGbz1'
+    request.addHeader("User-Agent", "Google Chrome X.Y")
+
+    def token
+    def model
+    def subject = Mock(org.apache.shiro.subject.Subject)
+    shiroEnvironment.setSubject(subject)
+
+    when:
+    withFilters(controller: 'federatedSessions', action: 'federatedlogin') {
+      model = controller.federatedlogin()
+    }
+
+    then:
+    1 * subject.login( { t -> token = t; t instanceof FederatedToken } )
+    token.principal == 'http://test.com!http://sp.test.com!1234'
+    token.credential == '1234-mockid-5678'
+    token.userAgent == "Google Chrome X.Y"
+    response.redirectedUrl == '/some/test/content'
   }
 
 }

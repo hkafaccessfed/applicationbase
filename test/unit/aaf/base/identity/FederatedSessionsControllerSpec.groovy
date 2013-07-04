@@ -586,7 +586,9 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
   def 'accept injected attributes when in development mode'() {
     setup:
     defineBeans {
-      developmentAttributesService()
+      developmentAttributesService(DevelopmentAttributesService) {
+        it.autowire = 'byName'
+      }
     }
 
     grailsApplication.config.grails.serverURL = 'localhost'
@@ -616,6 +618,7 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     params.'attributes.mail' = 'fred-injected@uni.edu.au'
     params.'attributes.auEduPersonSharedToken' = 'LGW3wpNaPgwnLoYYsghGbz1'
     request.addHeader("User-Agent", "Google Chrome X.Y")
+    request.method = 'POST'
 
     def token
     def model
@@ -632,7 +635,6 @@ class FederatedSessionsControllerSpec extends spock.lang.Specification {
     token.principal == 'http://test.com!http://sp.test.com!1234'
     token.credential == '1234-mockid-5678'
     token.userAgent == "Google Chrome X.Y"
-    response.redirectedUrl == '/some/test/content'
   }
 
 }

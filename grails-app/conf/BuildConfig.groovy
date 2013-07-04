@@ -53,7 +53,7 @@ grails.project.dependency.resolution = {
     compile ":shiro:1.1.3"
     compile ':cache:1.0.0'
     compile ":mail:1.0"
-    compile ":greenmail:1.3.2"
+    compile ":greenmail:1.3.4"
     compile ":codenarc:0.17"
     compile ":build-test-data:2.0.3"
 

@@ -6,6 +6,7 @@ import org.apache.shiro.SecurityUtils
 import org.apache.shiro.authc.AuthenticationException
 import org.apache.shiro.authc.DisabledAccountException
 import org.apache.shiro.authc.IncorrectCredentialsException
+import org.apache.shiro.authc.UnknownAccountException
 
 class ApiBaseController {    
   def grailsApplication
@@ -23,6 +24,11 @@ class ApiBaseController {
     catch (IncorrectCredentialsException e) {
       response.status = 403
       render(contentType: 'text/json') { ['error':'Signature validation failed. Verify account, private secret and computation method used to access this secured API is valid.', 'internalerror':e.message] }
+      return false
+    }
+    catch (UnknownAccountException e) {
+      response.status = 403
+      render(contentType: 'text/json') { ['error':'Verify account used to access this secured API is known', 'internalerror':e.message] }
       return false
     }
     catch (DisabledAccountException e) {

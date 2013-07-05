@@ -1,3 +1,5 @@
+package aaf.base
+
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -6,6 +8,7 @@ import org.springframework.beans.factory.InitializingBean
 class AAFBaseSecurityFilters implements InitializingBean  {
 
   def grailsApplication
+  def developmentAttributesService
 
   String VALID_REFERER
   String DATE_FORMAT
@@ -18,7 +21,7 @@ class AAFBaseSecurityFilters implements InitializingBean  {
   def filters = {
     checkReferer(controller: '*', action: '*') {
       before = {
-        if (request.method.toUpperCase() != "GET") {
+        if (request.method.toUpperCase() != "GET" && request.method.toUpperCase() != "HEAD") {
           def referer = request.getHeader('Referer')
 
           if(!(referer && referer =~ VALID_REFERER)) {
@@ -84,16 +87,41 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }
     }
 
+    console_bootstrap(controller:"console") {
+      before = {
+        if (grailsApplication.config.aaf.base.bootstrap) {
+          log.info("secfilter: ALLOWED BOOTSTRAP CONSOLE - ${request.remoteAddr}|$params.controller/$params.action")
+          return true
+        }
+
+        accessControl { true }
+      }
+    }
+
     console(controller:"console") {
       before = {
-        if (!accessControl { permission("app:administration") }) {
-          log.info("secfilter: DENIED - [${subject.id}]${subject.principal}|${request.remoteAddr}|$params.controller/$params.action")
+        if (!grailsApplication.config.aaf.base.bootstrap) {
+          if(accessControl { permission("app:administration") }) {
+            log.info("secfilter: ALLOWED CONSOLE - [${subject?.id}]${subject?.principal}|${request.remoteAddr}|$params.controller/$params.action")
+            return true
+          }
+
+          log.info("secfilter: DENIED CONSOLE - [${subject?.id}]${subject?.principal}|${request.remoteAddr}|$params.controller/$params.action")
           response.sendError(404) // Deliberately not 403 so endpoint can't be figured out.
           return false
         }
-        log.info("secfilter: ALLOWED - [$subject.id]$subject.principal|${request.remoteAddr}|$params.controller/$params.action")
+      }   
+    }
+
+    developmentAttributes(controller:'federatedSessions', action:'federatedlogin') {
+      before = {
+        if (grailsApplication.config.aaf.base.realms.federated.development.active) {
+          developmentAttributesService.storeAttributes(request, session, params)
+          developmentAttributesService.injectAttributes(request, session)
+        }
+
+        true
       }
     }
   }
-  
 }

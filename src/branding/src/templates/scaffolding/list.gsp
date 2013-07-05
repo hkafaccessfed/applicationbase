@@ -6,17 +6,17 @@
   <body>
 
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li class="active"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li class="active"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}"/></li>
       
       <aaf:hasPermission target="app:manage:${domainClass.propertyName.toLowerCase()}:create">
-        <li class="pull-right"><strong><g:link action="create"><g:message code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}.create"/></g:link></strong></li>
+        <li class="pull-right"><strong><g:link action="create"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.${domainClass.propertyName.toLowerCase()}.create"/></g:link></strong></li>
       </aaf:hasPermission>
     </ul>
 
     <g:render template="/templates/flash" plugin="aafApplicationBase"/>
 
-    <h2><g:message code="views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.list.heading" /></h2>
+    <h2><g:message encodeAs='HTML' code="views.${domainClass.packageName.toLowerCase()}.${domainClass.name.toLowerCase()}.list.heading" /></h2>
     
       <table class="table table-borderless table-sortable">
         <thead>
@@ -26,7 +26,7 @@
             Collections.sort(props, comparator.constructors[0].newInstance([domainClass] as Object[]))
             props.eachWithIndex { p, i ->
               if (i < 6) { %>
-              <th><g:message code="label.${p.name.toLowerCase()}" /></th> <%    }   } %>
+              <th><g:message encodeAs='HTML' code="label.${p.name.toLowerCase()}" /></th> <%    }   } %>
               <th/>
           </tr>
         </thead>
@@ -38,7 +38,7 @@
             <td><g:formatBoolean boolean="\${${propertyName}.${p.name}}" /></td><%    } else if (p.type == Date || p.type == java.sql.Date || p.type == java.sql.Time || p.type == Calendar) { %>
             <td><g:formatDate date="\${${propertyName}.${p.name}}" /></td><%    } else { %>
             <td>\${fieldValue(bean: ${propertyName}, field: "${p.name}")}</td><%    }   }   } %>
-            <td><g:link action="show" id="\${${propertyName}.id}" class="btn btn-small"><g:message code="label.view"/></g:link></td>
+            <td><g:link action="show" id="\${${propertyName}.id}" class="btn btn-small"><g:message encodeAs='HTML' code="label.view"/></g:link></td>
           </tr>
         </g:each>
         </tbody>

@@ -12,7 +12,7 @@ class AAFBaseTagLib {
 
   // Create bootstrap compatible tooltips using Grails i18n
   def tooltip = { attrs ->
-    def msg = g.message(code:attrs.code)
+    def msg = g.message(encodeAs:'HTML', code:attrs.code)
     out << r.img(dir:'images', file:'help.png', title:msg, width:'16px', height:'16px', rel:'tooltip', 'data-placement':'right')
   }
 

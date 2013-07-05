@@ -5,30 +5,30 @@
   <body>
 
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li><g:link controller="adminDashboard"><g:message code="branding.nav.breadcrumb.admin"/></g:link> <span class="divider">/</span></li>
-      <li class="active"><g:link controller="role" action="list"><g:message code="branding.nav.breadcrumb.role"/></g:link> <span class="divider">/</span></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li><g:link controller="adminDashboard"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.admin"/></g:link> <span class="divider">/</span></li>
+      <li class="active"><g:link controller="role" action="list"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.role"/></g:link> <span class="divider">/</span></li>
       <li class="active">${fieldValue(bean: role, field: "name")}</li>
     </ul>
 
     <g:render template="/templates/flash" />
 
-    <h2><g:message code="views.aaf.base.admin.role.show.heading" args="[role.name]"/></h2>
+    <h2><g:message encodeAs='HTML' code="views.aaf.base.admin.role.show.heading" args="[role.name]"/></h2>
 
     <ul class="nav nav-tabs">
-      <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message code="label.overview" /></a></li>
-      <li><a href="#tab-members" data-toggle="tab"><g:message code="label.members" /></a></li>
-      <li><a href="#tab-permissions" data-toggle="tab"><g:message code="label.permissions" /></a></li>
+      <li class="active"><a href="#tab-overview" data-toggle="tab"><g:message encodeAs='HTML' code="label.overview" /></a></li>
+      <li><a href="#tab-members" data-toggle="tab"><g:message encodeAs='HTML' code="label.members" /></a></li>
+      <li><a href="#tab-permissions" data-toggle="tab"><g:message encodeAs='HTML' code="label.permissions" /></a></li>
 
       <li class="dropdown pull-right">
         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-          <g:message code="label.actions" />
+          <g:message encodeAs='HTML' code="label.actions" />
           <b class="caret"></b>
         </a>
         <ul class="dropdown-menu">
-          <li><g:link contoller='role' action='edit' id="$role.id"><g:message code="label.edit"/></g:link></li>
+          <li><g:link contoller='role' action='edit' id="$role.id"><g:message encodeAs='HTML' code="label.edit"/></g:link></li>
           <li>
-            <a href="#" class="delete-ensure" data-confirm="${message(code:'views.aaf.base.admin.role.confirm.remove')}"><g:message code="label.delete"/></a>
+            <a href="#" class="delete-ensure" data-confirm="${message(code:'views.aaf.base.admin.role.confirm.remove')}"><g:message encodeAs='HTML' code="label.delete"/></a>
             <g:form action="delete" method="delete">
               <g:hiddenField name="id" value="${role.id}" />
             </g:form>
@@ -43,31 +43,31 @@
           <table class="table table-borderless">
             <tbody>
               <tr>
-                <th><g:message code="label.id" /></th>
+                <th><g:message encodeAs='HTML' code="label.id" /></th>
                 <td><g:fieldValue bean="${role}" field="id"/></td>
               </tr>
               <tr>
-                <th><g:message code="label.name" /></th>
+                <th><g:message encodeAs='HTML' code="label.name" /></th>
                 <td><g:fieldValue bean="${role}" field="name"/></td>
               </tr>
               <tr>
-                <th><g:message code="label.description" /></th>
+                <th><g:message encodeAs='HTML' code="label.description" /></th>
                 <td><g:fieldValue bean="${role}" field="description"/></td>
               </tr>
               <tr>
-                <th><g:message code="label.protect" /></th>
+                <th><g:message encodeAs='HTML' code="label.protect" /></th>
                 <td><g:formatBoolean boolean="${role?.protect}" /></td>
               </tr>
             </tbody>
           </table>
         </div>
         <div id="editor-role" class="revealable">
-          <h3>Editing Role</h3>
+          <h3><g:message encodeAs='HTML' code="label.editingrole"/></h3>
 
           <g:hasErrors bean="${role}">
           <ul class="clean alert alert-error">
             <g:eachError bean="${role}" var="error">
-            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+            <li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message encodeAs='HTML' error="${error}"/></li>
             </g:eachError>
           </ul>
           </g:hasErrors>
@@ -80,7 +80,7 @@
             <fieldset>
               <div class="form-actions">
                 <g:actionSubmit class="save" action="update" class="btn btn-success" value="${message(code: 'label.update', default: 'Update')}" />
-                <a class="cancel-edit-role btn"><g:message code="label.cancel"  /></a>
+                <a class="cancel-edit-role btn"><g:message encodeAs='HTML' code="label.cancel"  /></a>
               </div>
             </fieldset>
           </g:form>
@@ -92,9 +92,9 @@
           <table class="table table-borderless table-sortable">
             <thead>
               <tr>
-                <th><g:message code="label.id" /></th>
-                <th><g:message code="label.name" /></th>
-                <th class="hidden-phone"><g:message code="label.principal" /></th>
+                <th><g:message encodeAs='HTML' code="label.id" /></th>
+                <th><g:message encodeAs='HTML' code="label.name" /></th>
+                <th class="hidden-phone"><g:message encodeAs='HTML' code="label.principal" /></th>
                 <th/>
               </tr>
             </thead>
@@ -105,8 +105,8 @@
                   <td><g:fieldValue bean="${subject}" field="cn"/></td>
                   <td class="hidden-phone"><g:fieldValue bean="${subject}" field="principal"/></td>
                   <td class="pull-right">
-                    <g:link controller="subject" action="show" id="${subject.id}" class="btn btn-small"><g:message code="label.view" /></g:link>
-                    <a href="#" class="delete-ensure btn btn-small btn-danger" data-confirm="${message(code:'views.aaf.base.admin.role.member.confirm.remove', args:[subject.cn])}"><g:message code="label.delete"/></a>
+                    <g:link controller="subject" action="show" id="${subject.id}" class="btn btn-small"><g:message encodeAs='HTML' code="label.view" /></g:link>
+                    <a href="#" class="delete-ensure btn btn-small btn-danger" data-confirm="${message(code:'views.aaf.base.admin.role.member.confirm.remove', args:[subject.cn])}"><g:message encodeAs='HTML' code="label.delete"/></a>
                     <g:form action="removemember" method="post" class="hidden">
                       <g:hiddenField name="id" value="${role?.id}" />
                       <g:hiddenField name="subjectID" value="${subject.id}" />
@@ -118,11 +118,11 @@
           </table>
         </g:if>
         <g:else>
-          <p class="alert alert-info"><g:message code="views.aaf.base.admin.role.members.none"/></p>
+          <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.admin.role.members.none"/></p>
         </g:else>
 
         <div class="table-modifiers">
-          <a id="show-add-role-members" class="btn btn-info"><g:message code="label.addmembers"/></a>
+          <a id="show-add-role-members" class="btn btn-info"><g:message encodeAs='HTML' code="label.addmembers"/></a>
           <div id="add-role-members"></div>
         </div>
       </div>
@@ -132,9 +132,9 @@
           <table class="table table-borderless">
             <thead>
               <tr>
-                <th class="hidden-phone"><g:message code="label.type" /></th>
-                <th><g:message code="label.target" /></th>
-                <th><g:message code="label.managed" /></th>
+                <th class="hidden-phone"><g:message encodeAs='HTML' code="label.type" /></th>
+                <th><g:message encodeAs='HTML' code="label.target" /></th>
+                <th><g:message encodeAs='HTML' code="label.managed" /></th>
                 <th/>
               </tr>
             </thead>
@@ -145,7 +145,7 @@
                   <td><g:fieldValue bean="${perm}" field="target"/></td>
                   <td><g:fieldValue bean="${perm}" field="managed"/></td>
                   <td>
-                    <a href="#" data-confirm="${message(code:'views.aaf.base.admin.role.permission.confirm.remove', args:[perm.target])}" class="btn btn-danger btn-small delete-ensure pull-right"><g:message code="label.delete"/></a>
+                    <a href="#" data-confirm="${message(code:'views.aaf.base.admin.role.permission.confirm.remove', args:[perm.target])}" class="btn btn-danger btn-small delete-ensure pull-right"><g:message encodeAs='HTML' code="label.delete"/></a>
                     <g:form action="deletepermission" method="post" class="form">
                       <g:hiddenField name="id" value="${role?.id}" />
                       <g:hiddenField name="permID" value="${perm.id}" />
@@ -158,15 +158,15 @@
           </table>
         </g:if>
         <g:else>
-          <p class="alert alert-info"><g:message code="views.aaf.base.admin.role.permissions.none"/></p>
+          <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.admin.role.permissions.none"/></p>
         </g:else>
 
         <g:form method="post" class="form-horizontal form-validating">
-          <legend><g:message code="label.addpermission" /></legend>
+          <legend><g:message encodeAs='HTML' code="label.addpermission" /></legend>
           <g:hiddenField name="id" value="${role?.id}" />
           <g:hiddenField name="version" value="${role?.version}" />
           <div class="control-group">
-            <label class="control-label"><g:message code="label.target" /></label>
+            <label class="control-label"><g:message encodeAs='HTML' code="label.target" /></label>
             <div class="controls">
               <input name="target" class="span4 required" placeholder="target:must:be:colon:seperated:use:*:for:matchall"></input>
             </div>
@@ -178,9 +178,8 @@
       </div>
     </div>
 
-<r:script>
-var searchNewMembersEndpoint = "${createLink(controller:'role', action:'searchNewMembers', id:role.id)}";
-</r:script>
-
+    <r:script>
+      var searchNewMembersEndpoint = "${createLink(controller:'role', action:'searchNewMembers', id:role.id)}";
+    </r:script>
   </body>
 </html>

@@ -2,29 +2,29 @@
 <html>
   <head>  
     <meta name="layout" content="internal" />
-    <title><g:message code="views.aaf.base.workflow.approval.administrator.title" /></title>
+    <title><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.administrator.title" /></title>
   </head>
   <body>
     
     <ul class="breadcrumb">
-      <li><g:link controller="dashboard"><g:message code="branding.application.name"/></g:link> <span class="divider">/</span></li>
-      <li class="active"><g:message code="branding.nav.breadcrumb.workflow.administrative.approval"/></li>
+      <li><g:link controller="dashboard"><g:message encodeAs='HTML' code="branding.application.name"/></g:link> <span class="divider">/</span></li>
+      <li class="active"><g:message encodeAs='HTML' code="branding.nav.breadcrumb.workflow.administrative.approval"/></li>
     </ul>
 
     <g:render template="/templates/flash" />
 
-    <h2><g:message code="views.aaf.base.workflow.approval.administrative.heading" /></h2>
+    <h2><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.administrative.heading" /></h2>
 
     <g:if test="${tasks}">
-      <p><g:message code="views.aaf.base.workflow.approval.administrative.descriptive" /></p>
+      <p><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.administrative.descriptive" /></p>
       <table class="table">
         <thead>
           <tr>
-            <th><g:message code="label.name" /></th>
-            <th><g:message code="label.created" /></th>
-            <th><g:message code="label.processinstance" /></th>
-            <th><g:message code="label.waitingon" /></th>
-            <th><g:message code="label.action" /></th>
+            <th><g:message encodeAs='HTML' code="label.name" /></th>
+            <th><g:message encodeAs='HTML' code="label.created" /></th>
+            <th><g:message encodeAs='HTML' code="label.processinstance" /></th>
+            <th><g:message encodeAs='HTML' code="label.waitingon" /></th>
+            <th><g:message encodeAs='HTML' code="label.action" /></th>
           </tr>
         </thead>
         <tbody>
@@ -56,7 +56,7 @@
               </td>
               <td>
                 <g:form action="approve" id="${instance.id}" name="submitapproval${i}" style="margin-bottom:24px; padding:0;">
-                  <g:submitButton name="submit" class="btn btn-success" value="${g.message(code:'label.approve')}"/>
+                  <g:submitButton name="submit" class="btn btn-success" value="${g.message(encodeAs:'HTML', code:'label.approve')}"/>
                 </g:form>
                 <g:each in="${instance.task.rejections}" var="rej">
                     <g:form action="reject" id="${instance.id}" name="submitrejection${i}" style="margin:1px; padding:0;">
@@ -76,7 +76,7 @@
       </table>
     </g:if>
     <g:else>
-      <p class="alert alert-info"><g:message code="views.aaf.base.workflow.approval.administrator.nothing" /></p>
+      <p class="alert alert-info"><g:message encodeAs='HTML' code="views.aaf.base.workflow.approval.administrator.nothing" /></p>
     </g:else>
       
   </body>

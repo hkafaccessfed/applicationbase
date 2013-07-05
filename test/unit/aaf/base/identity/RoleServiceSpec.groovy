@@ -6,8 +6,9 @@ import spock.lang.*
 import grails.plugin.spock.*
 
 @TestFor(aaf.base.identity.PermissionService)
+@Mock([Subject, Role, Permission])
 @Build([Subject, Role, Permission])
-class RoleServiceSpec extends UnitSpec {
+class RoleServiceSpec extends spock.lang.Specification {
 
   def "successfully creates unprotected role"() {
     setup:

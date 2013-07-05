@@ -8,7 +8,7 @@ class SubjectController {
 
   def permissionService
 
-  def beforeInterceptor = [action: this.&validSubject, except: ['index', 'list', 'deletepermission']]
+  def beforeInterceptor = [action: this.&validSubject, except: ['index', 'list']]
 
   def index() {
     redirect(action: "list", params: params)
@@ -33,7 +33,7 @@ class SubjectController {
     subject.enabled = true
 
     if(!subject.save()) {
-      response.sendError(500, "Error setting $subject to disabled state, object persistance failed") 
+      response.sendError(500, "Error setting $subject to enabled state, object persistance failed") 
       return
     }
 
@@ -82,6 +82,7 @@ class SubjectController {
   }
 
   def deletepermission() {
+    def subject = Subject.get(params.id)
     def permission = Permission.get(params.permID)
     if (!permission) {
       log.warn "No permission for $params.permID located when attempting to deletepermission"
@@ -89,7 +90,7 @@ class SubjectController {
       flash.type = 'error'
       flash.message = 'controllers.aaf.base.admin.subject.delete.permission.nonexistant'
 
-      redirect(action: "show", id:  subject.id, fragment:"tab-permissions")
+      redirect(action: "show", id: subject.id, fragment:"tab-permissions")
       return
     }
 
@@ -97,7 +98,7 @@ class SubjectController {
 
     flash.type = 'success'
     flash.message = 'controllers.aaf.base.admin.subject.delete.permission.success'
-    redirect(action: "show", id:  subject.id, fragment:"tab-permissions")
+    redirect(action: "show", id: subject.id, fragment: "tab-permissions")
   }
 
   private validSubject() {

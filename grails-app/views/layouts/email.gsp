@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />        
-    <title><g:message code='branding.application.name'/></title>
+    <title><g:message encodeAs='HTML' code='branding.application.name'/></title>
 
     <style type="text/css">
       /* Client-specific Styles */
@@ -235,7 +235,7 @@
                             <table border="0" cellpadding="0" cellspacing="0" width="600" id="templateHeader">
                               <tr>
                                 <td class="headerContent"> 
-                                  <img src="${grailsApplication.config.grails.serverURL}/images/emailbranding_${grailsApplication.config.federation.environment}.gif" alt="${g.message(code:'branding.application.name')} ${grailsApplication.config.federation.environment}"/>
+                                  <img src="${grailsApplication.config.grails.serverURL}/images/emailbranding_${grailsApplication.config.federation.environment}.gif" alt="${g.message(encodeAs:'HTML', code:'branding.application.name')} ${grailsApplication.config.federation.environment}"/>
                                 </td>
                               </tr>
                             </table>

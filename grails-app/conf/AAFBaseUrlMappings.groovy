@@ -5,12 +5,13 @@ class AAFBaseUrlMappings {
       controller = "federatedSessions"
     }
 
-    "/session/development/$action?/$id?"{
-      controller = "federatedDevelopmentSessions"
-    }
-
     "/session/$action?/$id?"{
       controller = "auth"
+    }
+
+    "/logout"{
+      controller = "auth"
+      action = "logout"
     }
 
     // Workflow
@@ -44,6 +45,10 @@ class AAFBaseUrlMappings {
       controller = "subject" 
     }
 
+    "/administration/apisubjects/$action?/$id?"{
+      controller = "apiSubject" 
+    }
+
     "/administration/roles/$action?/$id?"{
       controller = "role" 
     }
@@ -61,7 +66,12 @@ class AAFBaseUrlMappings {
     }
 
     // Console plugin
-    "/administration/console/$action?/$id?"{
+    "/console"{
+      controller = "console"
+      action = "index"
+    }
+
+    "/console/$action"{
       controller = "console"
     }
 

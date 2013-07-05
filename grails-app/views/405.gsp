@@ -8,9 +8,9 @@
     <div class="row">
       <div class="span12">
         <div class="hero-unit">
-          <h1><g:message code="branding.errors.405.heading"/></h1>
+          <h1><g:message encodeAs='HTML' code="branding.errors.405.heading"/></h1>
           <p>
-            <g:message code="branding.errors.405.descriptive"/>
+            <g:message encodeAs='HTML' code="branding.errors.405.descriptive"/>
           </p>
         </div>
         <p><g:message code="branding.application.supportdesk"/></p>

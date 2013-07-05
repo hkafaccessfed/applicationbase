@@ -1,7 +1,7 @@
 # README - AAF Application Base
 
 - (c) Australian Access Federation
-- Author: Bradley Beddoes, Australian Access Federation
+- Authors: Bradley Beddoes, Shaun Mangelsdorf
 
 ## Overview
 The AAF Application Base is an extensible Grails plugin that provides a number 

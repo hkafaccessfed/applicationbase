@@ -33,7 +33,7 @@
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
               <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m1" />
               <g:hiddenField name="attributes.cn" value="Fred Bloggs" />
-              <g:hiddenField name="attributes.email" value="fredbloggs@one.edu.au" />
+              <g:hiddenField name="attributes.mail" value="fredbloggs@one.edu.au" />
 
               <g:submitButton name="Login as Fred Bloggs" class="btn btn-success btn-large"/>
             </g:form>
@@ -47,7 +47,7 @@
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
               <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m2" />
               <g:hiddenField name="attributes.cn" value="Joe Schmoe" />
-              <g:hiddenField name="attributes.email" value="joeschmoe@one.edu.au" />
+              <g:hiddenField name="attributes.mail" value="joeschmoe@one.edu.au" />
 
               <g:submitButton name="Login as Joe Schmoe" class="btn btn-warning btn-large"/>
             </g:form>
@@ -61,7 +61,7 @@
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
               <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m3" />
               <g:hiddenField name="attributes.cn" value="Max Mustermann" />
-              <g:hiddenField name="attributes.email" value="maxmustermann@one.edu.au" />
+              <g:hiddenField name="attributes.mail" value="maxmustermann@one.edu.au" />
 
               <g:submitButton name="Login as Max Mustermann" class="btn btn-large"/>
             </g:form>

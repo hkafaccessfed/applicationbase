@@ -31,7 +31,7 @@
               <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!https://manager.aaf.edu.au/shibboleth!8698dde3-d9cd-4c44-928c-2b6836bcc4bb" />
               <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
-              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz1" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m1" />
               <g:hiddenField name="attributes.cn" value="Fred Bloggs" />
               <g:hiddenField name="attributes.email" value="fredbloggs@one.edu.au" />
 
@@ -45,7 +45,7 @@
               <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-2" />
               <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
-              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz2" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m2" />
               <g:hiddenField name="attributes.cn" value="Joe Schmoe" />
               <g:hiddenField name="attributes.email" value="joeschmoe@one.edu.au" />
 
@@ -59,7 +59,7 @@
               <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-3" />
               <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
-              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz3" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m3" />
               <g:hiddenField name="attributes.cn" value="Max Mustermann" />
               <g:hiddenField name="attributes.email" value="maxmustermann@one.edu.au" />
 
@@ -73,7 +73,7 @@
               <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-4" />
               <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
-              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz4" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m4" />
               <g:hiddenField name="attributes.cn" value="Иван Петров" />
               <g:hiddenField name="attributes.mail" value="i.petrov@one.edu.au" />
 
@@ -87,12 +87,12 @@
               <g:hiddenField name="attributes.persistent-id" value="https://idp.one.edu.au/idp/shibboleth!-!d2404817-6fb9-4165-90d8-5"/>
               <g:hiddenField name="attributes.Shib-Session-ID" value="fake-sessionid-webform" />
               <g:hiddenField name="attributes.Shib-Identity-Provider" value="https://idp.one.edu.au/idp/shibboleth" />
-              <g:hiddenField name="attributes.auEduPersonSharedToken" value="LGW3wpNaPgwnLoYYsghGbz5" />
+              <g:hiddenField name="attributes.auEduPersonSharedToken" value="TUWr3JO7Zdf1grqyRHiuBXdf-m5" />
               <g:hiddenField name="attributes.cn" value="Johnny Moreattr" />
               <g:hiddenField name="attributes.mail" value="johnnymoreattr@one.edu.au" />
 
               <g:hiddenField name="attributes.displayName" value="Johnny Johnson Johndel Moreattr" />
-              <g:hiddenField name="attributes.assurance" value="urn:mace:aaf.edu.au:iap-test-values:id:1" />
+              <g:hiddenField name="attributes.assurance" value="urn:mace:aaf.edu.au:iap:id:0" />
               <g:hiddenField name="attributes.unscoped-affiliation" value="member" />
               <g:hiddenField name="attributes.affiliation" value="member@one.edu.au" />
               <g:hiddenField name="attributes.entitlement" value="http://test.aaf.edu.au/entitlements/test" />
@@ -104,7 +104,7 @@
               <g:hiddenField name="attributes.telephoneNumber" value="+619876543210" />
               <g:hiddenField name="attributes.postalAddress" value="1 One University St, Onesville" />
               <g:hiddenField name="attributes.organizationalUnit" value="Section One" />
-              <g:hiddenField name="attributes.homeOrganization" value="One University" />
+              <g:hiddenField name="attributes.homeOrganization" value="one.edu.au" />
               <g:hiddenField name="attributes.homeOrganizationType" value="urn:mace:terena.org:schac:homeOrganizationType:int:university" />
 
               <g:submitButton name="Login as Johnny Moreattr" class="btn btn-info btn-large"/>

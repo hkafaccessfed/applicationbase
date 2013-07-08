@@ -1,3 +1,5 @@
+package aaf.base
+
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
@@ -6,6 +8,7 @@ import org.springframework.beans.factory.InitializingBean
 class AAFBaseSecurityFilters implements InitializingBean  {
 
   def grailsApplication
+  def developmentAttributesService
 
   String VALID_REFERER
   String DATE_FORMAT
@@ -18,7 +21,7 @@ class AAFBaseSecurityFilters implements InitializingBean  {
   def filters = {
     checkReferer(controller: '*', action: '*') {
       before = {
-        if (request.method.toUpperCase() != "GET") {
+        if (request.method.toUpperCase() != "GET" && request.method.toUpperCase() != "HEAD") {
           def referer = request.getHeader('Referer')
 
           if(!(referer && referer =~ VALID_REFERER)) {
@@ -110,5 +113,15 @@ class AAFBaseSecurityFilters implements InitializingBean  {
       }   
     }
 
+    developmentAttributes(controller:'federatedSessions', action:'federatedlogin') {
+      before = {
+        if (grailsApplication.config.aaf.base.realms.federated.development.active) {
+          developmentAttributesService.storeAttributes(request, session, params)
+          developmentAttributesService.injectAttributes(request, session)
+        }
+
+        true
+      }
+    }
   }
 }

@@ -5,10 +5,6 @@ class AAFBaseUrlMappings {
       controller = "federatedSessions"
     }
 
-    "/session/development/$action?/$id?"{
-      controller = "federatedDevelopmentSessions"
-    }
-
     "/session/$action?/$id?"{
       controller = "auth"
     }
@@ -47,6 +43,10 @@ class AAFBaseUrlMappings {
     
     "/administration/subjects/$action?/$id?"{
       controller = "subject" 
+    }
+
+    "/administration/apisubjects/$action?/$id?"{
+      controller = "apiSubject" 
     }
 
     "/administration/roles/$action?/$id?"{

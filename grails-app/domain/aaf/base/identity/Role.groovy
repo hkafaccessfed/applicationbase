@@ -23,4 +23,12 @@ class Role {
   static mapping = {
     table 'base_role'
   }
+
+  def listSubjects() {
+    subjects.findAll{ !it.instanceOf(aaf.base.identity.ApiSubject) }
+  }
+
+  def listApiSubjects() {
+    subjects.findAll{ it.instanceOf(aaf.base.identity.ApiSubject) }
+  }
 }

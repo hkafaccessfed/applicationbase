@@ -85,11 +85,11 @@ class FederatedRealm {
         subject.principal = token.principal   // Ensure we catch EPTID change linked by the same SharedToken value
         subject.cn = token.attributes.cn
         
-        if(token.attributes.email.contains(';')) {
+        if(token.attributes?.email?.contains(';')) {
           log.warn "Email provided for ${token.principal} is multivalued (${token.attributes.email}) attempting to split on ; and use first returned value."
-          subject.email = token.attributes.email.toLowerCase().split(';')[0]
+          subject.email = token.attributes?.email?.toLowerCase().split(';')[0]
         } else {
-          subject.email = token.attributes.email.toLowerCase()
+          subject.email = token.attributes?.email?.toLowerCase()
         }
 
         // If we start recieving ST for an existing account then store it

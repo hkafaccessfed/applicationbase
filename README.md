@@ -1,7 +1,7 @@
 # README - AAF Application Base
 
 - (c) Australian Access Federation
-- Author: Bradley Beddoes, Australian Access Federation
+- Authors: Bradley Beddoes, Shaun Mangelsdorf
 
 ## Overview
 The AAF Application Base is an extensible Grails plugin that provides a number 
@@ -119,8 +119,14 @@ Be sure to also document new values in application_config.groovy.orig to assist 
 
 13. Navigate to your application as indicated by Grails output
 14. You should have a public welcome page, be able to login and then access
-all the default functionality as an administator. Try logging out and then
-in again as someone else, all of the admin functionality should be gone.
+all the default functionality.
+15. To become an administrator start a MySQL session and run the following:
+
+      select id, cn, email from subjects;  # Take not of your accounts ID.
+      insert into base_role_subjects (subject_id, role_id) values(<id>,1);
+
+1. Refresh your browser, you should have full admin rights and can use the UI to on assign this in the future.
+
 
 ## Customisation Points
 The commands you ran earlier (clean-new-app and create-branding) have taken your vanilla Grails app and both removed css/js/images that we don't use and added css/js/images that we do.

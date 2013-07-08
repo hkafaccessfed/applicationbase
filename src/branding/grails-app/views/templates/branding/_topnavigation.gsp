@@ -52,6 +52,7 @@
             <ul class="dropdown-menu" role="menu" aria-labelledby="administration">
               <li><g:link controller="adminDashboard" action="index"><g:message encodeAs='HTML' code="branding.nav.admin.dashboard" /></g:link></li>
               <li><g:link controller="subject"><g:message encodeAs='HTML' code="branding.nav.admin.subjects" /></g:link></li>
+              <li><g:link controller="apiSubject"><g:message encodeAs='HTML' code="branding.nav.admin.apisubjects" /></g:link></li>
               <li><g:link controller="role"><g:message encodeAs='HTML' code="branding.nav.admin.roles" /></g:link></li>
               <li class="dropdown-submenu">
                 <a tabindex="-1" href="#"><g:message encodeAs='HTML' code="branding.nav.admin.workflow" /> <i class="icon-chevron-right icon-white"></i></a>

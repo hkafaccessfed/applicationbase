@@ -21,7 +21,7 @@ class AAFBaseSecurityFilters implements InitializingBean  {
   def filters = {
     checkReferer(controller: '*', action: '*') {
       before = {
-        if (request.method.toUpperCase() != "GET" && request.method.toUpperCase() != "HEAD") {
+        if (request.method.toUpperCase() != "GET" && request.method.toUpperCase() != "HEAD" && !request.forwardURI.startsWith("/api")) {
           def referer = request.getHeader('Referer')
 
           if(!(referer && referer =~ VALID_REFERER)) {

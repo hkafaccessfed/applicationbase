@@ -43,6 +43,6 @@ class ApiBaseController {
   }
 
   private Map buildJSONResponse(Map m) {
-    return m + [timestamp:new Date(), issuer:grailsApplication.config.aaf.base.service_identifier]
+    return m + [timestamp:new Date()]
   }
 }

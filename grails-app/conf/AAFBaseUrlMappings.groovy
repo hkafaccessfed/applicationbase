@@ -85,5 +85,8 @@ class AAFBaseUrlMappings {
     "/greenmail/$action?/$id?"{
       controller = "greenmail"
     }
+
+    // Fake SMS Delivery (Development mode only)
+    "/sms/json"(controller:"fakeSMSDelivery", action:"json")
   }
 }

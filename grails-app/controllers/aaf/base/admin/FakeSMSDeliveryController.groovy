@@ -5,7 +5,7 @@ class FakeSMSDeliveryController {
   def mailService
 
   def json() {
-    if (grailsApplication.config.aaf.base.fake_sms) {
+    if (grailsApplication.config.aaf.base.sms.fake) {
       log.info("Fake SMS Controller invoked with $params")
 
       mailService.sendMail {

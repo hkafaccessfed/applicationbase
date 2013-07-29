@@ -29,6 +29,9 @@ class AafApplicationBaseGrailsPlugin {
   }
 
   def doWithSpring = {
+    smsDeliveryService(aaf.base.SMSDeliveryService) {
+      it.autowire = 'byName'
+    }
   }
 
   def doWithDynamicMethods = { ctx ->

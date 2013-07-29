@@ -1,5 +1,5 @@
 class AAFBaseUrlMappings {
-  static mappings = {    
+  static mappings = {
     // Session Management
     "/session/federated/$action?/$id?"{
       controller = "federatedSessions"
@@ -40,7 +40,7 @@ class AAFBaseUrlMappings {
       controller="adminDashboard"
       action="environment"
     }
-    
+
     "/administration/subjects/$action?/$id?"{
       controller = "subject" 
     }
@@ -77,13 +77,16 @@ class AAFBaseUrlMappings {
 
     // Errors
     "403"(view:'/403')
-    "404"(view:'/404')
+    "404"(controller:'error', action:'notFound')
     "405"(view:'/405')
-    "500"(view:'/500')
+    "500"(controller:'error', action:'internalServerError')
 
     // Greenmail (Development mode only)
     "/greenmail/$action?/$id?"{
       controller = "greenmail"
     }
+
+    // Fake SMS Delivery (Development mode only)
+    "/sms/json"(controller:"fakeSMSDelivery", action:"json")
   }
 }

@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
     compile ":greenmail:1.3.4"
     compile ":codenarc:0.17"
     compile ":build-test-data:2.0.3"
+    compile ":rest:0.7"
 
     runtime ":hibernate:$grailsVersion"
     runtime ":resources:1.2.RC2"

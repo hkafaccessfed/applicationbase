@@ -8,15 +8,12 @@ import org.apache.shiro.authc.DisabledAccountException
 import org.apache.shiro.authc.IncorrectCredentialsException
 import org.apache.shiro.authc.UnknownAccountException
 
-class ApiBaseController {    
-  def grailsApplication
+class ApiBaseController {
 
-  def beforeInterceptor = [action: this.&validateRequest]
-  
   private boolean validateRequest() {
     def incomplete = false
     def errors = []
-    
+
     try {
       def token = new ApiToken(request:request) 
       SecurityUtils.subject.login(token)
@@ -43,5 +40,9 @@ class ApiBaseController {
     }
 
     true
+  }
+
+  private Map buildJSONResponse(Map m) {
+    return m + [timestamp:new Date()]
   }
 }

@@ -4,7 +4,7 @@ import aaf.base.identity.Subject
 
 class AafApplicationBaseGrailsPlugin {
 
-  def version = "0.9.4"
+  def version = "0.10.0"
 
   def grailsVersion = "2.2 > *"
 
@@ -29,6 +29,9 @@ class AafApplicationBaseGrailsPlugin {
   }
 
   def doWithSpring = {
+    smsDeliveryService(aaf.base.SMSDeliveryService) {
+      it.autowire = 'byName'
+    }
   }
 
   def doWithDynamicMethods = { ctx ->

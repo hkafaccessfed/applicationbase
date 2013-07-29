@@ -7,7 +7,7 @@ import grails.plugin.mail.MailService
 class FakeSMSDeliveryControllerSpec extends Specification {
   def 'pretend to deliver an sms'() {
     setup:
-    grailsApplication.config.aaf.base.fake_sms = true
+    grailsApplication.config.aaf.base.sms.fake = true
     def mailService = Mock(MailService)
     controller.mailService = mailService
 
@@ -21,7 +21,7 @@ class FakeSMSDeliveryControllerSpec extends Specification {
 
   def 'pretend not to exist when disabled'() {
     setup:
-    grailsApplication.config.aaf.base.fake_sms = false
+    grailsApplication.config.aaf.base.sms.fake = false
 
     when:
     params.putAll(from:'AAF', to:'+61412345678', text:'test message')

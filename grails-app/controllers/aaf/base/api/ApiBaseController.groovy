@@ -10,6 +10,14 @@ import org.apache.shiro.authc.UnknownAccountException
 
 class ApiBaseController {
 
+  /*********
+  All child clases must explictly call:
+
+  def beforeInterceptor = [action: this.&validateRequest]
+
+  Grails inheritence mechanisms do not populate beforeInterceptors to children (DERRRRP??).
+  **********/
+
   private boolean validateRequest() {
     def incomplete = false
     def errors = []

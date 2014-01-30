@@ -23,7 +23,7 @@ class ApiBaseController {
     def errors = []
 
     try {
-      def token = new ApiToken(request:request) 
+      def token = new ApiToken(request:request)
       SecurityUtils.subject.login(token)
     }
     catch (IncorrectCredentialsException e) {
@@ -46,6 +46,10 @@ class ApiBaseController {
       render(contentType: 'text/json') { ['error':'General fault when validating request. Verify correct data is supplied for authentication to this API.', 'internalerror':e.message] }
       return false
     }
+
+    // We need to manually parse the body for API calls to setup expected Grails params environment
+    if(request.method == 'POST' || request.method == 'PUT')
+      params << org.codehaus.groovy.grails.web.util.WebUtils.fromQueryString(request.inputStream.text)
 
     true
   }

@@ -33,9 +33,9 @@ class AAFBaseBootStrap {
       }
 
       // Populates the super user group if not present
-      def adminRole = Role.findWhere(name:'AAF Application Administrators')
+      def adminRole = Role.findWhere(name:'HKAF Application Administrators')
       if(!adminRole) {
-        adminRole = roleService.createRole('AAF Application Administrators', 'AAF employees who have access to all parts of the application', true)
+        adminRole = roleService.createRole('HKAF Application Administrators', 'HKAF employees who have access to all parts of the application', true)
 
         def permission = new Permission()
         permission.type = Permission.defaultPerm
